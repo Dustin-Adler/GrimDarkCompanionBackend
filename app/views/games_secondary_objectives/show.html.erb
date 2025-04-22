@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @games_secondary_objective %>
+
+<div>
+  <%= link_to "Edit this games secondary objective", edit_games_secondary_objective_path(@games_secondary_objective) %> |
+  <%= link_to "Back to games secondary objectives", games_secondary_objectives_path %>
+
+  <%= button_to "Destroy this games secondary objective", @games_secondary_objective, method: :delete %>
+</div>

@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Games secondary objectives" %>
+
+<h1>Games secondary objectives</h1>
+
+<div id="games_secondary_objectives">
+  <% @games_secondary_objectives.each do |games_secondary_objective| %>
+    <%= render games_secondary_objective %>
+    <p>
+      <%= link_to "Show this games secondary objective", games_secondary_objective %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New games secondary objective", new_games_secondary_objective_path %>

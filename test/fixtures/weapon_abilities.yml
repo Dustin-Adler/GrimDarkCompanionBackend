@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  weapon_id: 1
+  ability_id: 1
+
+two:
+  weapon_id: 1
+  ability_id: 1

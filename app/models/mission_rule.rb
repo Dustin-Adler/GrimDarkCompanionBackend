@@ -1,0 +1,2 @@
+class MissionRule < ApplicationRecord
+end

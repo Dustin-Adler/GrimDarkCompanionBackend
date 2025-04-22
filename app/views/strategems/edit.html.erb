@@ -1,0 +1,12 @@
+<% content_for :title, "Editing strategem" %>
+
+<h1>Editing strategem</h1>
+
+<%= render "form", strategem: @strategem %>
+
+<br>
+
+<div>
+  <%= link_to "Show this strategem", @strategem %> |
+  <%= link_to "Back to strategems", strategems_path %>
+</div>

@@ -1,0 +1,2 @@
+class GamesSecondaryObjective < ApplicationRecord
+end

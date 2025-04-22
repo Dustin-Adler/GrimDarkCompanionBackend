@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @strategem_keyword %>
+
+<div>
+  <%= link_to "Edit this strategem keyword", edit_strategem_keyword_path(@strategem_keyword) %> |
+  <%= link_to "Back to strategem keywords", strategem_keywords_path %>
+
+  <%= button_to "Destroy this strategem keyword", @strategem_keyword, method: :delete %>
+</div>

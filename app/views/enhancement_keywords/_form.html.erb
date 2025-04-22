@@ -1,0 +1,27 @@
+<%= form_with(model: enhancement_keyword) do |form| %>
+  <% if enhancement_keyword.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(enhancement_keyword.errors.count, "error") %> prohibited this enhancement_keyword from being saved:</h2>
+
+      <ul>
+        <% enhancement_keyword.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :enhancement_id, style: "display: block" %>
+    <%= form.number_field :enhancement_id %>
+  </div>
+
+  <div>
+    <%= form.label :keyword_id, style: "display: block" %>
+    <%= form.number_field :keyword_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

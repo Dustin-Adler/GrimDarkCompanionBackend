@@ -1,0 +1,12 @@
+<% content_for :title, "Editing detachment" %>
+
+<h1>Editing detachment</h1>
+
+<%= render "form", detachment: @detachment %>
+
+<br>
+
+<div>
+  <%= link_to "Show this detachment", @detachment %> |
+  <%= link_to "Back to detachments", detachments_path %>
+</div>

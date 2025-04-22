@@ -1,0 +1,2 @@
+module EnhancementKeywordsHelper
+end

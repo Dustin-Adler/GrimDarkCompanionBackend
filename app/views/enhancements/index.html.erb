@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Enhancements" %>
+
+<h1>Enhancements</h1>
+
+<div id="enhancements">
+  <% @enhancements.each do |enhancement| %>
+    <%= render enhancement %>
+    <p>
+      <%= link_to "Show this enhancement", enhancement %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New enhancement", new_enhancement_path %>

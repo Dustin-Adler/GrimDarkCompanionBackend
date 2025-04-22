@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @enhancement %>
+
+<div>
+  <%= link_to "Edit this enhancement", edit_enhancement_path(@enhancement) %> |
+  <%= link_to "Back to enhancements", enhancements_path %>
+
+  <%= button_to "Destroy this enhancement", @enhancement, method: :delete %>
+</div>

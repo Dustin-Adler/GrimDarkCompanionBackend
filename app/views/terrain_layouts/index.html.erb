@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Terrain layouts" %>
+
+<h1>Terrain layouts</h1>
+
+<div id="terrain_layouts">
+  <% @terrain_layouts.each do |terrain_layout| %>
+    <%= render terrain_layout %>
+    <p>
+      <%= link_to "Show this terrain layout", terrain_layout %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New terrain layout", new_terrain_layout_path %>

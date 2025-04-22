@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  friend_one_id: 1
+  friend_two_id: 1
+  pending: false
+
+two:
+  friend_one_id: 1
+  friend_two_id: 1
+  pending: false

@@ -1,0 +1,2 @@
+module ModelWeaponsHelper
+end

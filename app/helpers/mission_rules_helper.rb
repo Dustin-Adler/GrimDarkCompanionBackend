@@ -1,0 +1,2 @@
+module MissionRulesHelper
+end

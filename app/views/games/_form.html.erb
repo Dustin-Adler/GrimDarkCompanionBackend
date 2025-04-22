@@ -1,0 +1,82 @@
+<%= form_with(model: game) do |form| %>
+  <% if game.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+        <% game.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :id, style: "display: block" %>
+    <%= form.number_field :id %>
+  </div>
+
+  <div>
+    <%= form.label :player_one_id, style: "display: block" %>
+    <%= form.number_field :player_one_id %>
+  </div>
+
+  <div>
+    <%= form.label :player_two_id, style: "display: block" %>
+    <%= form.number_field :player_two_id %>
+  </div>
+
+  <div>
+    <%= form.label :game_name, style: "display: block" %>
+    <%= form.text_field :game_name %>
+  </div>
+
+  <div>
+    <%= form.label :note, style: "display: block" %>
+    <%= form.text_field :note %>
+  </div>
+
+  <div>
+    <%= form.label :list_value_limit, style: "display: block" %>
+    <%= form.number_field :list_value_limit %>
+  </div>
+
+  <div>
+    <%= form.label :mission_rule, style: "display: block" %>
+    <%= form.number_field :mission_rule %>
+  </div>
+
+  <div>
+    <%= form.label :deployment, style: "display: block" %>
+    <%= form.number_field :deployment %>
+  </div>
+
+  <div>
+    <%= form.label :battle_round, style: "display: block" %>
+    <%= form.number_field :battle_round %>
+  </div>
+
+  <div>
+    <%= form.label :player_one_list_id, style: "display: block" %>
+    <%= form.number_field :player_one_list_id %>
+  </div>
+
+  <div>
+    <%= form.label :player_two_list_id, style: "display: block" %>
+    <%= form.number_field :player_two_list_id %>
+  </div>
+
+  <div>
+    <%= form.label :player_one_vps, style: "display: block" %>
+    <%= form.number_field :player_one_vps %>
+  </div>
+
+  <div>
+    <%= form.label :player_two_vps, style: "display: block" %>
+    <%= form.number_field :player_two_vps %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

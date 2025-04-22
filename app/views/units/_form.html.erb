@@ -1,0 +1,52 @@
+<%= form_with(model: unit) do |form| %>
+  <% if unit.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(unit.errors.count, "error") %> prohibited this unit from being saved:</h2>
+
+      <ul>
+        <% unit.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :note, style: "display: block" %>
+    <%= form.text_field :note %>
+  </div>
+
+  <div>
+    <%= form.label :leader_one_id, style: "display: block" %>
+    <%= form.number_field :leader_one_id %>
+  </div>
+
+  <div>
+    <%= form.label :leader_two_id, style: "display: block" %>
+    <%= form.number_field :leader_two_id %>
+  </div>
+
+  <div>
+    <%= form.label :squad_id, style: "display: block" %>
+    <%= form.number_field :squad_id %>
+  </div>
+
+  <div>
+    <%= form.label :squad_quantity, style: "display: block" %>
+    <%= form.text_field :squad_quantity %>
+  </div>
+
+  <div>
+    <%= form.label :enhancement_id, style: "display: block" %>
+    <%= form.number_field :enhancement_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

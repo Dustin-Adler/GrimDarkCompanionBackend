@@ -1,0 +1,12 @@
+<% content_for :title, "Editing mission rule" %>
+
+<h1>Editing mission rule</h1>
+
+<%= render "form", mission_rule: @mission_rule %>
+
+<br>
+
+<div>
+  <%= link_to "Show this mission rule", @mission_rule %> |
+  <%= link_to "Back to mission rules", mission_rules_path %>
+</div>

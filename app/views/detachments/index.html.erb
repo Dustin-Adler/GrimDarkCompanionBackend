@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Detachments" %>
+
+<h1>Detachments</h1>
+
+<div id="detachments">
+  <% @detachments.each do |detachment| %>
+    <%= render detachment %>
+    <p>
+      <%= link_to "Show this detachment", detachment %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New detachment", new_detachment_path %>

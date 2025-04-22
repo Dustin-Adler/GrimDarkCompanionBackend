@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  player_one_id: 1
+  player_two_id: 1
+  game_name: MyString
+  note: MyString
+  list_value_limit: 1
+  mission_rule: 1
+  deployment: 1
+  battle_round: 1
+  player_one_list_id: 1
+  player_two_list_id: 1
+  player_one_vps: 1
+  player_two_vps: 1
+
+two:
+  id: 1
+  player_one_id: 1
+  player_two_id: 1
+  game_name: MyString
+  note: MyString
+  list_value_limit: 1
+  mission_rule: 1
+  deployment: 1
+  battle_round: 1
+  player_one_list_id: 1
+  player_two_list_id: 1
+  player_one_vps: 1
+  player_two_vps: 1

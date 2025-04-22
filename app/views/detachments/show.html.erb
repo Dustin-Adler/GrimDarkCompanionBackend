@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @detachment %>
+
+<div>
+  <%= link_to "Edit this detachment", edit_detachment_path(@detachment) %> |
+  <%= link_to "Back to detachments", detachments_path %>
+
+  <%= button_to "Destroy this detachment", @detachment, method: :delete %>
+</div>

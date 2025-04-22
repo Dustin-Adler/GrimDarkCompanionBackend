@@ -1,0 +1,2 @@
+module AvailableStrategemsHelper
+end

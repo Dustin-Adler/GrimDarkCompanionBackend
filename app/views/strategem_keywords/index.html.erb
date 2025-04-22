@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Strategem keywords" %>
+
+<h1>Strategem keywords</h1>
+
+<div id="strategem_keywords">
+  <% @strategem_keywords.each do |strategem_keyword| %>
+    <%= render strategem_keyword %>
+    <p>
+      <%= link_to "Show this strategem keyword", strategem_keyword %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New strategem keyword", new_strategem_keyword_path %>

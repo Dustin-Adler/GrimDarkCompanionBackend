@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @model_keyword %>
+
+<div>
+  <%= link_to "Edit this model keyword", edit_model_keyword_path(@model_keyword) %> |
+  <%= link_to "Back to model keywords", model_keywords_path %>
+
+  <%= button_to "Destroy this model keyword", @model_keyword, method: :delete %>
+</div>

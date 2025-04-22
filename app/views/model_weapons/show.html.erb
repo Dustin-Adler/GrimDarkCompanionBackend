@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @model_weapon %>
+
+<div>
+  <%= link_to "Edit this model weapon", edit_model_weapon_path(@model_weapon) %> |
+  <%= link_to "Back to model weapons", model_weapons_path %>
+
+  <%= button_to "Destroy this model weapon", @model_weapon, method: :delete %>
+</div>

@@ -1,0 +1,2 @@
+class EnhancementKeyword < ApplicationRecord
+end

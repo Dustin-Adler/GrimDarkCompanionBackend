@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Available strategems" %>
+
+<h1>Available strategems</h1>
+
+<div id="available_strategems">
+  <% @available_strategems.each do |available_strategem| %>
+    <%= render available_strategem %>
+    <p>
+      <%= link_to "Show this available strategem", available_strategem %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New available strategem", new_available_strategem_path %>

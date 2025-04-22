@@ -1,0 +1,2 @@
+class TerrainLayout < ApplicationRecord
+end

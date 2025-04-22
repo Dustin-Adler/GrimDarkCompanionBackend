@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  name: MyString
+  meelee: false
+  range: 1
+  attacks: 1
+  proficiency: 1
+  strength: 1
+  damage: MyString
+
+two:
+  id: 1
+  name: MyString
+  meelee: false
+  range: 1
+  attacks: 1
+  proficiency: 1
+  strength: 1
+  damage: MyString

@@ -1,0 +1,12 @@
+<% content_for :title, "Editing enhancement" %>
+
+<h1>Editing enhancement</h1>
+
+<%= render "form", enhancement: @enhancement %>
+
+<br>
+
+<div>
+  <%= link_to "Show this enhancement", @enhancement %> |
+  <%= link_to "Back to enhancements", enhancements_path %>
+</div>

@@ -1,0 +1,2 @@
+class ModelKeyword < ApplicationRecord
+end

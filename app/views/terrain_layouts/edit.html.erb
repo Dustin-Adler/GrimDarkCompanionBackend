@@ -1,0 +1,12 @@
+<% content_for :title, "Editing terrain layout" %>
+
+<h1>Editing terrain layout</h1>
+
+<%= render "form", terrain_layout: @terrain_layout %>
+
+<br>
+
+<div>
+  <%= link_to "Show this terrain layout", @terrain_layout %> |
+  <%= link_to "Back to terrain layouts", terrain_layouts_path %>
+</div>

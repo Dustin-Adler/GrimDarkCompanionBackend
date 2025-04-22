@@ -1,0 +1,12 @@
+<% content_for :title, "Editing enhancement keyword" %>
+
+<h1>Editing enhancement keyword</h1>
+
+<%= render "form", enhancement_keyword: @enhancement_keyword %>
+
+<br>
+
+<div>
+  <%= link_to "Show this enhancement keyword", @enhancement_keyword %> |
+  <%= link_to "Back to enhancement keywords", enhancement_keywords_path %>
+</div>

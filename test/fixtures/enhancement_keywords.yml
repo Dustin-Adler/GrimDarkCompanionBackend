@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  enhancement_id: 1
+  keyword_id: 1
+
+two:
+  enhancement_id: 1
+  keyword_id: 1

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @terrain_layout %>
+
+<div>
+  <%= link_to "Edit this terrain layout", edit_terrain_layout_path(@terrain_layout) %> |
+  <%= link_to "Back to terrain layouts", terrain_layouts_path %>
+
+  <%= button_to "Destroy this terrain layout", @terrain_layout, method: :delete %>
+</div>

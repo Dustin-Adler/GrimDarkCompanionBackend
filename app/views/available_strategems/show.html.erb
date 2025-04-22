@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @available_strategem %>
+
+<div>
+  <%= link_to "Edit this available strategem", edit_available_strategem_path(@available_strategem) %> |
+  <%= link_to "Back to available strategems", available_strategems_path %>
+
+  <%= button_to "Destroy this available strategem", @available_strategem, method: :delete %>
+</div>

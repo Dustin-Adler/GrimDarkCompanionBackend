@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  movement: 1
+  cost: 1
+  min_squad: 1
+  max_squad: 1
+  unit_limit: 1
+  toughness: 1
+  armour_save: 1
+  invuln_save: 1
+  wounds: 1
+  leadership: 1
+  obj_control: 1
+
+two:
+  name: MyString
+  description: MyString
+  movement: 1
+  cost: 1
+  min_squad: 1
+  max_squad: 1
+  unit_limit: 1
+  toughness: 1
+  armour_save: 1
+  invuln_save: 1
+  wounds: 1
+  leadership: 1
+  obj_control: 1

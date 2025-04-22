@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Model keywords" %>
+
+<h1>Model keywords</h1>
+
+<div id="model_keywords">
+  <% @model_keywords.each do |model_keyword| %>
+    <%= render model_keyword %>
+    <p>
+      <%= link_to "Show this model keyword", model_keyword %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New model keyword", new_model_keyword_path %>

@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Mission rules" %>
+
+<h1>Mission rules</h1>
+
+<div id="mission_rules">
+  <% @mission_rules.each do |mission_rule| %>
+    <%= render mission_rule %>
+    <p>
+      <%= link_to "Show this mission rule", mission_rule %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New mission rule", new_mission_rule_path %>

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @weapon_ability %>
+
+<div>
+  <%= link_to "Edit this weapon ability", edit_weapon_ability_path(@weapon_ability) %> |
+  <%= link_to "Back to weapon abilities", weapon_abilities_path %>
+
+  <%= button_to "Destroy this weapon ability", @weapon_ability, method: :delete %>
+</div>

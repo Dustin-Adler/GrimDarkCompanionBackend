@@ -1,0 +1,1 @@
+json.partial! "games_secondary_objectives/games_secondary_objective", games_secondary_objective: @games_secondary_objective

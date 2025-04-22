@@ -1,0 +1,57 @@
+<%= form_with(model: strategem) do |form| %>
+  <% if strategem.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(strategem.errors.count, "error") %> prohibited this strategem from being saved:</h2>
+
+      <ul>
+        <% strategem.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :id, style: "display: block" %>
+    <%= form.number_field :id %>
+  </div>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :cost, style: "display: block" %>
+    <%= form.number_field :cost %>
+  </div>
+
+  <div>
+    <%= form.label :when, style: "display: block" %>
+    <%= form.text_field :when %>
+  </div>
+
+  <div>
+    <%= form.label :target, style: "display: block" %>
+    <%= form.text_field :target %>
+  </div>
+
+  <div>
+    <%= form.label :effect, style: "display: block" %>
+    <%= form.text_field :effect %>
+  </div>
+
+  <div>
+    <%= form.label :restrictions, style: "display: block" %>
+    <%= form.text_field :restrictions %>
+  </div>
+
+  <div>
+    <%= form.label :detachment_id, style: "display: block" %>
+    <%= form.number_field :detachment_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
