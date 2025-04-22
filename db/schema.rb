@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_22_205728) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_22_215222) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -161,7 +161,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_22_205728) do
     t.string "description", null: false
     t.integer "movement", null: false
     t.integer "army_id", null: false
-    t.integer "cost", null: false
+    t.float "cost", null: false
     t.integer "min_squad", null: false
     t.integer "max_squad", null: false
     t.integer "unit_limit", null: false
@@ -173,6 +173,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_22_205728) do
     t.integer "obj_control", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "affiliate_model_id"
+    t.integer "big_squad_points_adjustment", default: 0
     t.index ["army_id"], name: "index_models_on_army_id"
   end
 

@@ -1,26 +1,3 @@
-# create_table "models", force: :cascade do |t|
-#     t.string "name", null: false
-#     t.string "description", null: false
-#     t.integer "movement", null: false
-#     t.integer "army_id", null: false
-#     t.integer "cost", null: false
-#     t.integer "min_squad", null: false
-#     t.integer "max_squad", null: false
-#     t.integer "unit_limit", null: false
-#     t.integer "toughness", null: false
-#     t.integer "armour_save", null: false
-#     t.integer "invuln_save", null: false
-#     t.integer "wounds", null: false
-#     t.integer "leadership", null: false
-#     t.integer "obj_control", null: false
-#     t.datetime "created_at", null: false
-#     t.datetime "updated_at", null: false
-#     t.index ["army_id"], name: "index_models_on_army_id"
-#   end
-
-
-# Looks like I might have to go back and change the cost of all of the models to reflect the per-model cost instead of the squad cost.
-
 orks_army_id = Army.find_by(name: "Orks").id
 
 Model.create({
@@ -149,7 +126,7 @@ Model.create({
     obj_control: 3
 })
 
-Model.create({
+ghazghkull_thraka = Model.create({
     name: "Ghazghkull Thraka",
     description: "To face Ghazghkull Thraka in battle is to die. Messily. He is a totemic war leader of great kunnin’ and terrifying presence who enjoys the personal protection of the Ork gods, not that he seems to need it!",
     movement: 5,
@@ -166,7 +143,7 @@ Model.create({
     obj_control: 4
 })
 
-Model.create({
+makari = Model.create({
     name: "Makari",
     description: "Makari bears aloft the personal Waaagh! banner of Ghazghkull. There isn’t a greenskin living who doesn’t fight harder in sight of that flag.",
     movement: 5,
@@ -180,8 +157,11 @@ Model.create({
     invuln_save: 2,
     wounds: 1,
     leadership: 8,
-    obj_control: 1
+    obj_control: 1,
+    affiliate_model_id: ghazghkull_thraka.id
 })
+
+ghazghkull_thraka.update(affiliate_model_id: makari.id)
 
 Model.create({
     name: "Mek",
@@ -319,12 +299,12 @@ Model.create({
     obj_control: 1
 })
 
-Model.create({
-    name: "Beast Snagga Boy",
+beast_snagga_boyz_boy = Model.create({
+    name: "Beast Snagga Boyz - Boy",
     description: "Big, brutal, and belligerent, Beast Snagga Boyz are a force to be reckoned with. From the cannonball-like fist-shells of their thump guns, to the inescapable hooks of their choppas, Beast Snaggas excel in softening up their prey, dragging them down, then ripping them bodily to bits.",
     movement: 6,
     army_id: orks_army_id,
-    cost: 95,
+    cost: 9.5,
     min_squad: 9,
     max_squad: 10,
     unit_limit: 2,
@@ -336,46 +316,12 @@ Model.create({
     obj_control: 2
 })
 
-Model.create({
-    name: "Beast Snagga Nob",
+beast_snagga_boyz_nob = Model.create({
+    name: "Beast Snagga Boyz - Nob",
     description: "Big, brutal, and belligerent, Beast Snagga Boyz are a force to be reckoned with. From the cannonball-like fist-shells of their thump guns, to the inescapable hooks of their choppas, Beast Snaggas excel in softening up their prey, dragging them down, then ripping them bodily to bits.",
     movement: 6,
     army_id: orks_army_id,
-    cost: 0,
-    min_squad: 1,
-    max_squad: 1,
-    unit_limit: 2,
-    toughness: 5,
-    armour_save: 5,
-    invuln_save: 0,
-    wounds: 2,
-    leadership: 7,
-    obj_control: 2
-})
-
-Model.create({
-    name: "Boy",
-    description: "Ork Boyz surge into battle in huge, unruly mobs dotted with crude special weapons and led by foul-tempered Boss Nobz. Most simply stampede towards the enemy lines, relying on their numbers and natural hardiness to carry the charge home, while others hitch a ride on Trukks and Battlewagons so as to get stuck in all the faster.",
-    movement: 6,
-    army_id: orks_army_id,
-    cost: 80,
-    min_squad: 9,
-    max_squad: 10,
-    unit_limit: 2,
-    toughness: 5,
-    armour_save: 5,
-    invuln_save: 0,
-    wounds: 1,
-    leadership: 7,
-    obj_control: 2
-})
-
-Model.create({
-    name: "Boss Nob",
-    description: "Ork Boyz surge into battle in huge, unruly mobs dotted with crude special weapons and led by foul-tempered Boss Nobz. Most simply stampede towards the enemy lines, relying on their numbers and natural hardiness to carry the charge home, while others hitch a ride on Trukks and Battlewagons so as to get stuck in all the faster.",
-    movement: 6,
-    army_id: orks_army_id,
-    cost: 0,
+    cost: 9.5,
     min_squad: 1,
     max_squad: 1,
     unit_limit: 1,
@@ -384,8 +330,46 @@ Model.create({
     invuln_save: 0,
     wounds: 2,
     leadership: 7,
+    obj_control: 2,
+    affiliate_model_id: beast_snagga_boyz_boy.id
+})
+beast_snagga_boyz_boy.update(affiliate_model_id: beast_snagga_boyz_nob.id)
+
+boyz_boy = Model.create({
+    name: "Boyz - Boy",
+    description: "Ork Boyz surge into battle in huge, unruly mobs dotted with crude special weapons and led by foul-tempered Boss Nobz. Most simply stampede towards the enemy lines, relying on their numbers and natural hardiness to carry the charge home, while others hitch a ride on Trukks and Battlewagons so as to get stuck in all the faster.",
+    movement: 6,
+    army_id: orks_army_id,
+    cost: 8,
+    min_squad: 9,
+    max_squad: 10,
+    unit_limit: 2,
+    toughness: 5,
+    armour_save: 5,
+    invuln_save: 0,
+    wounds: 1,
+    leadership: 7,
     obj_control: 2
 })
+
+boyz_boss_nob = Model.create({
+    name: "Boyz - Boss Nob",
+    description: "Ork Boyz surge into battle in huge, unruly mobs dotted with crude special weapons and led by foul-tempered Boss Nobz. Most simply stampede towards the enemy lines, relying on their numbers and natural hardiness to carry the charge home, while others hitch a ride on Trukks and Battlewagons so as to get stuck in all the faster.",
+    movement: 6,
+    army_id: orks_army_id,
+    cost: 8,
+    min_squad: 1,
+    max_squad: 1,
+    unit_limit: 1,
+    toughness: 5,
+    armour_save: 5,
+    invuln_save: 0,
+    wounds: 2,
+    leadership: 7,
+    obj_control: 2,
+    affiliate_model_id: boyz_boy.id
+})
+boyz_boy.update(affiliate_model_id: boyz_boss_nob.id)
 
 Model.create({
     name: "Trukk",
@@ -472,12 +456,12 @@ Model.create({
     obj_control: 3
 })
 
-Model.create({
+burna_boyz_boy = Model.create({
     name: "Burna Boyz - Boy",
     description: "The burna is a cutting torch intended for slicing up battlefield wreckage. Serendipitously, it also works well when searing through an enemy’s armour at close quarters, or, with a twist of its nozzle, can instead belch a tongue of roaring flame over the foe. Needless to say, the most pyromaniacally inclined Orks delight in doing both.",
     movement: 6,
     army_id: orks_army_id,
-    cost: 60,
+    cost: 12,
     min_squad: 4,
     max_squad: 8,
     unit_limit: 2,
@@ -489,12 +473,12 @@ Model.create({
     obj_control: 1
 })
 
-Model.create({
+burna_boyz_spanner = Model.create({
     name: "Burna Boyz - Spanner",
     description: "The burna is a cutting torch intended for slicing up battlefield wreckage. Serendipitously, it also works well when searing through an enemy’s armour at close quarters, or, with a twist of its nozzle, can instead belch a tongue of roaring flame over the foe. Needless to say, the most pyromaniacally inclined Orks delight in doing both.",
     movement: 6,
     army_id: orks_army_id,
-    cost: 0,
+    cost: 12,
     min_squad: 1,
     max_squad: 2,
     unit_limit: 2,
@@ -503,8 +487,10 @@ Model.create({
     invuln_save: 0,
     wounds: 1,
     leadership: 7,
-    obj_control: 1
+    obj_control: 1,
+    affiliate_model_id: burna_boyz_boy.id
 })
+burna_boyz_boy.update(affiliate_model_id: burna_boyz_spanner.id)
 
 Model.create({
     name: "Burna-bommer",
@@ -562,7 +548,7 @@ Model.create({
     description: "Most Orks take a dim view of muckin’ about in the sky, and would much rather go to war with their feet firmly on the ground. Deffkopta pilots are the lunatic exception, hurtling ahead to spy out enemy forces for their warband to bring to battle, and to give those same enemies a good strafing run or three in the meantime.",
     movement: 12,
     army_id: orks_army_id,
-    cost: 90,
+    cost: 30,
     min_squad: 3,
     max_squad: 3,
     unit_limit: 2,
@@ -579,7 +565,7 @@ Model.create({
     description: "Flash Gitz are despised by other greenskins for being self-important show-offs with too much snazz and dakka for their own good. The Gitz couldn’t care less, of course, delighting in ostentatiously brandishing their over-the-top snazzguns before using them to utterly demolish the enemy in a hail of shells, blasts and rokkits.",
     movement: 6,
     army_id: orks_army_id,
-    cost: 80,
+    cost: 16,
     min_squad: 5,
     max_squad: 5,
     unit_limit: 2,
@@ -608,12 +594,12 @@ Model.create({
     obj_control: 8
 })
 
-Model.create({
+gretchin_grot = Model.create({
     name: "Gretchin - Grot",
     description: "What Gretchin – also called grots – lack in stature, courage, resilience, discipline, motivation, loyalty, aggression and personal hygiene, they allegedly make up for in numbers. They are at least reasonable shots with their underpowered firearms, and if all else fails, the Orks find that grots make excellent bullet-stops.",
     movement: 6,
     army_id: orks_army_id,
-    cost: 40,
+    cost: 3.64,
     min_squad: 10,
     max_squad: 10,
     unit_limit: 2,
@@ -625,12 +611,12 @@ Model.create({
     obj_control: 2
 })
 
-Model.create({
+gretchin_runtherd = Model.create({
     name: "Gretchin - Runtherd",
     description: "What Gretchin – also called grots – lack in stature, courage, resilience, discipline, motivation, loyalty, aggression and personal hygiene, they allegedly make up for in numbers. They are at least reasonable shots with their underpowered firearms, and if all else fails, the Orks find that grots make excellent bullet-stops.",
     movement: 6,
     army_id: orks_army_id,
-    cost: 0,
+    cost: 3.64,
     min_squad: 1,
     max_squad: 1,
     unit_limit: 2,
@@ -639,8 +625,10 @@ Model.create({
     invuln_save: 0,
     wounds: 2,
     leadership: 7,
-    obj_control: 1
+    obj_control: 1,
+    affiliate_model_id: gretchin_grot.id
 })
+gretchin_grot.update(affiliate_model_id: gretchin_runtherd.id)
 
 Model.create({
     name: "Hunta Rig",
@@ -681,7 +669,7 @@ Model.create({
     description: "Surgically wiring grots into combat walkers is risky: the runty loons tend to go on a bit of a power trip, hazardous to every Ork that ever treated them badly. On the other hand, their ability to shoot straight renders their hails of rokkits, bullets and grotzooka-launched scrap- shrapnel even more hazardous to the foe.",
     movement: 6,
     army_id: orks_army_id,
-    cost: 125,
+    cost: 41.67,
     min_squad: 3,
     max_squad: 3,
     unit_limit: 2,
@@ -693,12 +681,12 @@ Model.create({
     obj_control: 2
 })
 
-Model.create({
+kommandos_kommando = Model.create({
     name: "Kommandos - Kommando",
     description: "No right-thinking Ork trusts Kommandos. They sneak up on the enemy rather than charging in headlong, and have an unhealthy fascination with very big knives and their application to people’s backs, throats and guts. That said, having a band of Kommandos ambush the enemy mid-battle definitely has its uses.",
     movement: 6,
     army_id: orks_army_id,
-    cost: 120,
+    cost: 12,
     min_squad: 9,
     max_squad: 9,
     unit_limit: 1,
@@ -710,12 +698,12 @@ Model.create({
     obj_control: 1
 })
 
-Model.create({
+kommandos_boss_nob = Model.create({
     name: "Kommandos - Boss Nob",
     description: "No right-thinking Ork trusts Kommandos. They sneak up on the enemy rather than charging in headlong, and have an unhealthy fascination with very big knives and their application to people’s backs, throats and guts. That said, having a band of Kommandos ambush the enemy mid-battle definitely has its uses.",
     movement: 6,
     army_id: orks_army_id,
-    cost: 0,
+    cost: 12,
     min_squad: 1,
     max_squad: 1,
     unit_limit: 1,
@@ -724,15 +712,17 @@ Model.create({
     invuln_save: 0,
     wounds: 2,
     leadership: 7,
-    obj_control: 1
+    obj_control: 1,
+    affiliate_model_id: kommandos_kommando.id
 })
+kommandos_kommando.update(affiliate_model_id: kommandos_boss_nob.id)
 
-Model.create({
+lootas_loota = Model.create({
     name: "Lootas - Loota",
     description: "Lootas grub together every toof and fistful of scrap they can, then use the former to pay the Meks to turn the latter into very, very large guns. These they then turn on the enemy with gleeful abandon, unleashing such prodigious – if erratic – hails of fire that they can stop a battle tank in its tracks or scythe down squads of infantry.",
     movement: 6,
     army_id: orks_army_id,
-    cost: 50,
+    cost: 10,
     min_squad: 4,
     max_squad: 4,
     unit_limit: 2,
@@ -744,12 +734,12 @@ Model.create({
     obj_control: 1
 })
 
-Model.create({
+lootas_spanna = Model.create({
     name: "Lootas - Spanner",
     description: "Lootas grub together every toof and fistful of scrap they can, then use the former to pay the Meks to turn the latter into very, very large guns. These they then turn on the enemy with gleeful abandon, unleashing such prodigious – if erratic – hails of fire that they can stop a battle tank in its tracks or scythe down squads of infantry.",
     movement: 6,
     army_id: orks_army_id,
-    cost: 0,
+    cost: 10,
     min_squad: 1,
     max_squad: 1,
     unit_limit: 2,
@@ -758,15 +748,17 @@ Model.create({
     invuln_save: 0,
     wounds: 1,
     leadership: 7,
-    obj_control: 1
+    obj_control: 1,
+    affiliate_model_id: lootas_loota.id
 })
+lootas_loota.update(affiliate_model_id: lootas_spanna.id)
 
 Model.create({
     name: "Meganobz",
     description: "Mega armour comprises massive slabs of metal bashed roughly into shape, and is powered by pistons and sheer brute strength. It is highly resilient and can mount an array of potent weaponry. It is also usually worn to battle by toof-rich Nobz who would be scary enough even were they not each wearing their own Ork-portable bunker.",
     movement: 5,
     army_id: orks_army_id,
-    cost: 105,
+    cost: 35,
     min_squad: 2,
     max_squad: 3,
     unit_limit: 2,
@@ -880,12 +872,12 @@ Model.create({
     obj_control: 3
 })
 
-Model.create({
+squighog_boyz_boy = Model.create({
     name: "Squighog Boyz - Squighog Boy",
     description: "With their mounts snorting and saddlegitz hanging on for dear life, Squighog Boyz thunder into the fight. They fling rokkit-propelled stikkas, hitting with enough force to pierce plate armour, then employ muscle, weight, momentum and sheer belligerence to squash those foes still standing to a paste.",
     movement: 10,
     army_id: orks_army_id,
-    cost: 160,
+    cost: 40,
     min_squad: 3,
     max_squad: 3,
     unit_limit: 2,
@@ -897,12 +889,12 @@ Model.create({
     obj_control: 2
 })
 
-Model.create({
+squighog_boyz_nob = Model.create({
     name: "Squighog Boyz - Nob on Smasha Squig",
     description: "With their mounts snorting and saddlegitz hanging on for dear life, Squighog Boyz thunder into the fight. They fling rokkit-propelled stikkas, hitting with enough force to pierce plate armour, then employ muscle, weight, momentum and sheer belligerence to squash those foes still standing to a paste.",
     movement: 10,
     army_id: orks_army_id,
-    cost: 0,
+    cost: 40,
     min_squad: 1,
     max_squad: 1,
     unit_limit: 2,
@@ -911,8 +903,10 @@ Model.create({
     invuln_save: 0,
     wounds: 4,
     leadership: 7,
-    obj_control: 2
+    obj_control: 2,
+    affiliate_model_id: squighog_boyz_boy.id
 })
+squighog_boyz_boy.update(affiliate_model_id: squighog_boyz_nob.id)
 
 Model.create({
     name: "Stompa",
@@ -931,12 +925,12 @@ Model.create({
     obj_control: 12
 })
 
-Model.create({
+stormboyz_boy = Model.create({
     name: "Stormboy - Stormboy",
     description: "Most Orks mock Stormboyz for their acts of juvenile rebellion, from taking orders and shining their boots to marching about, talking about ‘taktics’ and even following a battle plan. Yet when that plan is ‘strap on a high powered rokkit and hurtle into the enemy bellowing “Waaagh!”’, it does prove to have its merits.",
     movement: 12,
     army_id: orks_army_id,
-    cost: 65,
+    cost: 13,
     min_squad: 4,
     max_squad: 5,
     unit_limit: 2,
@@ -948,12 +942,12 @@ Model.create({
     obj_control: 1
 })
 
-Model.create({
+stormboyz_nob = Model.create({
     name: "Stormboy - Boss Nob",
     description: "Most Orks mock Stormboyz for their acts of juvenile rebellion, from taking orders and shining their boots to marching about, talking about ‘taktics’ and even following a battle plan. Yet when that plan is ‘strap on a high powered rokkit and hurtle into the enemy bellowing “Waaagh!”’, it does prove to have its merits.",
     movement: 12,
     army_id: orks_army_id,
-    cost: 65,
+    cost: 13,
     min_squad: 1,
     max_squad: 1,
     unit_limit: 1,
@@ -962,15 +956,17 @@ Model.create({
     invuln_save: 0,
     wounds: 2,
     leadership: 7,
-    obj_control: 1
+    obj_control: 1,
+    affiliate_model_id: stormboyz_boy.id
 })
+stormboyz_boy.update(affiliate_model_id: stormboyz_nob.id)
 
-Model.create({
+warbikers_biker = Model.create({
     name: "Warbikers - Warbiker",
     description: "Ork Warbikers race into battle with dakkaguns hammering, ragged trails of dust and smoke boiling up behind them like an ill omen. They race one another at breakneck pace to reach the enemy first, execute death-defying stunts at suicidal speeds, then crash headlong into the foe’s battle line like battering rams.",
     movement: 12,
     army_id: orks_army_id,
-    cost: 70,
+    cost: 23.34,
     min_squad: 2,
     max_squad: 3,
     unit_limit: 2,
@@ -982,12 +978,12 @@ Model.create({
     obj_control: 2
 })
 
-Model.create({
+warbikers_nob = Model.create({
     name: "Warbikers - Boss Nob on Warbike",
     description: "Ork Warbikers race into battle with dakkaguns hammering, ragged trails of dust and smoke boiling up behind them like an ill omen. They race one another at breakneck pace to reach the enemy first, execute death-defying stunts at suicidal speeds, then crash headlong into the foe’s battle line like battering rams.",
     movement: 12,
     army_id: orks_army_id,
-    cost: 0,
+    cost: 23.34,
     min_squad: 1,
     max_squad: 1,
     unit_limit: 1,
@@ -996,8 +992,10 @@ Model.create({
     invuln_save: 6,
     wounds: 4,
     leadership: 7,
-    obj_control: 2
+    obj_control: 2,
+    affiliate_model_id: warbikers_biker.id
 })
+warbikers_biker.update(affiliate_model_id: warbikers_nob.id)
 
 Model.create({
     name: "Wazbom Blastajet",
@@ -1016,7 +1014,7 @@ Model.create({
     obj_control: 0
 })
 
-Model.create({
+breaka_boyz_boy = Model.create({
     name: "Breaka Boyz - Boy",
     description: "Breaka Boyz dismantle the foe’s war engines and defences with well-placed krumpings from their smash hammers. Some use a pair of brutal knucklebustas, while the more addled opt for a tankhammer: a rokkit strapped to a big metal stick that offers a satisfyingly explosive means of up-close annihilation.",
     movement: 6,
@@ -1033,7 +1031,7 @@ Model.create({
     obj_control: 1
 })
 
-Model.create({
+breaka_boyz_nob = Model.create({
     name: "Breaka Boyz - Boss Nob",
     description: "Breaka Boyz dismantle the foe’s war engines and defences with well-placed krumpings from their smash hammers. Some use a pair of brutal knucklebustas, while the more addled opt for a tankhammer: a rokkit strapped to a big metal stick that offers a satisfyingly explosive means of up-close annihilation.",
     movement: 6,
@@ -1047,10 +1045,12 @@ Model.create({
     invuln_save: 0,
     wounds: 2,
     leadership: 7,
-    obj_control: 1
+    obj_control: 1,
+    affiliate_model_id: breaka_boyz_boy.id
 })
+breaka_boyz_boy.update(affiliate_model_id: breaka_boyz_nob.id)
 
-Model.create({
+tankbusta_tankbusta = Model.create({
     name: "Tankbustas - Tankbusta",
     description: "Tankbustas fixate on blasting enemy vehicles into scrap using barrages of rokkits that detonate in deafening explosions. They wield varied, cobbled-together launchas, and are laden with an arsenal of explosive projectiles, whose dubious reliability is made up for by the Tankbustas’ enthusiasm.",
     movement: 6,
@@ -1067,7 +1067,7 @@ Model.create({
     obj_control: 1
 })
 
-Model.create({
+tankbusta_boss_nob = Model.create({
     name: "Tankbustas - Boss Nob",
     description: "Tankbustas fixate on blasting enemy vehicles into scrap using barrages of rokkits that detonate in deafening explosions. They wield varied, cobbled-together launchas, and are laden with an arsenal of explosive projectiles, whose dubious reliability is made up for by the Tankbustas’ enthusiasm.",
     movement: 6,
@@ -1081,8 +1081,10 @@ Model.create({
     invuln_save: 0,
     wounds: 2,
     leadership: 7,
-    obj_control: 1
+    obj_control: 1,
+    affiliate_model_id: tankbusta_tankbusta.id
 })
+tankbusta_tankbusta.update(affiliate_model_id: tankbusta_boss_nob.id)
 
 Model.create({
     name: "Gargantuan Squiggoth",
