@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   resources :games_secondary_objectives
   resources :mission_rules
   resources :terrain_layouts
