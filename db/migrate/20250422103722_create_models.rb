@@ -5,7 +5,7 @@ class CreateModels < ActiveRecord::Migration[8.0]
       t.string :description, null: false
       t.integer :movement, null: false
       t.integer :army_id, null: false
-      t.integer :cost, null: false
+      t.float :cost, null: false
       t.integer :min_squad, null: false
       t.integer :max_squad, null: false
       t.integer :unit_limit, null: false
@@ -15,6 +15,8 @@ class CreateModels < ActiveRecord::Migration[8.0]
       t.integer :wounds, null: false
       t.integer :leadership, null: false
       t.integer :obj_control, null: false
+      t.integer :affiliate_model_id, default: nil
+      t.integer :big_squad_points_adjustment, default: 0
 
       t.timestamps
     end
