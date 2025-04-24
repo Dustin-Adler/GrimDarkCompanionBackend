@@ -29,6 +29,579 @@ def create_weapons(weapons)
     end
 end
 
+ork_weapons = {
+    "Beastboss" = [
+        {
+            name: "Shoota",
+            meelee: false,
+            range: 18,
+            attacks: "2",
+            proficiency: 4,
+            strength: "4",
+            armour_penetration: 0,
+            damage: "1"
+        },  {
+            name: "Beast Snagga Klaw",
+            meelee: true,
+            range: 0,
+            attacks: "4",
+            proficiency: 3,
+            strength: "10",
+            armour_penetration: -2,
+            damage: "2"
+        },  {
+            name: "Beastchoppa",
+            meelee: true,
+            range: 0,
+            attacks: "6",
+            proficiency: 2,
+            strength: "6",
+            armour_penetration: -1,
+            damage: "2"
+        }
+    ], "Beastboss On Squigosaur" = [
+        {
+            name: "Slugga",
+            meelee: false,
+            range: 12,
+            attacks: "1",
+            proficiency: 5,
+            strength: "4",
+            armour_penetration: 0,
+            damage: "1"
+        }, {
+            name: "Thump Gun",
+            meelee: false,
+            range: 18,
+            attacks: "d3",
+            proficiency: 5,
+            strength: "6",
+            armour_penetration: 0,
+            damage: "2"
+        },  {
+            name: "Beastchoppa",
+            meelee: true,
+            range: 0,
+            attacks: "6",
+            proficiency: 2,
+            strength: "6",
+            armour_penetration: -1,
+            damage: "2"
+        }, {
+            name: "Squigosaur's Jaws",
+            meelee: true,
+            range: 0,
+            attacks: "3",
+            proficiency: 4,
+            strength: "7",
+            armour_penetration: -2,
+            damage: "3"
+        }
+    ], "Big Mek" = [
+        {
+            name: "Kustom Mega-Blasta",
+            meelee: false,
+            range: 24,
+            attacks: "3",
+            proficiency: 5,
+            strength: "9",
+            armour_penetration: -2,
+            damage: "d6"
+        }, {
+            name: "Traktor Blasta",
+            meelee: false,
+            range: 36,
+            attacks: "1",
+            proficiency: 5,
+            strength: "10",
+            armour_penetration: -2,
+            damage: "d6+1"
+        }, {
+            name: "Drilla",
+            meelee: true,
+            range: 0,
+            attacks: "2",
+            proficiency: 3,
+            strength: "12",
+            armour_penetration: -3,
+            damage: "3"
+        }, {
+            name: "Power Klaw",
+            meelee: true,
+            range: 0,
+            attacks: "4",
+            proficiency: 3,
+            strength: "9",
+            armour_penetration: -2,
+            damage: "2"
+        }
+    ], "Big Mek In Mega Armour" = [
+        {
+            name: "Kombi-Weapon",
+            meelee: false,
+            range: 24,
+            attacks: "1",
+            proficiency: 5,
+            strength: "4",
+            armour_penetration: 0,
+            damage: "1"
+        }, {
+            name: "Kustom Mega-Blasta",
+            meelee: false,
+            range: 24,
+            attacks: "3",
+            proficiency: 5,
+            strength: "9",
+            armour_penetration: -2,
+            damage: "d6"
+        }, {
+            name: "Kustom Shoota",
+            meelee: false,
+            range: 18,
+            attacks: "4",
+            proficiency: 5,
+            strength: "4",
+            armour_penetration: 0,
+            damage: "1"
+        }, {
+            name: "Tellyport Blasta",
+            meelee: false,
+            range: 12,
+            attacks: "3",
+            proficiency: 5,
+            strength: "8",
+            armour_penetration: -1,
+            damage: "3"
+        }, {
+            name: "Killsaw",
+            meelee: true,
+            range: 0,
+            attacks: "3",
+            proficiency: 4,
+            strength: "12",
+            armour_penetration: -3,
+            damage: "2"
+        }, {
+            name: "Power Klaw",
+            meelee: true,
+            range: 0,
+            attacks: "4",
+            proficiency: 3,
+            strength: "9",
+            armour_penetration: -2,
+            damage: "2"
+        }
+    ], "Big Mek With Shokk Attack Gun" = [
+        {
+            name: "Shokk Attack Gun",
+            meelee: false,
+            range: 60,
+            attacks: "d6+1",
+            proficiency: 5,
+            strength: "9",
+            armour_penetration: -4,
+            damage: "d6"
+        }, {
+            name: "Close Combat Weapon",
+            meelee: true,
+            range: 0,
+            attacks: "4",
+            proficiency: 3,
+            strength: "5",
+            armour_penetration: 0,
+            damage: "1"
+        }
+    ], "Boss Snikrot" = [
+        {
+            name: "Slugga",
+            meelee: false,
+            range: 12,
+            attacks: "1",
+            proficiency: 4,
+            strength: "4",
+            armour_penetration: 0,
+            damage: "1"
+        }, {
+            name: "Mork's Teeth",
+            meelee: true,
+            range: 0,
+            attacks: "6",
+            proficiency: 2,
+            strength: "6",
+            armour_penetration: -1,
+            damage: "2"
+        }
+    ], "Deffkilla Wartrike" = [
+        {
+            name: "Boomstikks",
+            meelee: false,
+            range: 12,
+            attacks: "6",
+            proficiency: 5,
+            strength: "5",
+            armour_penetration: 0,
+            damage: "1"
+        }, {
+            name: "Killa Jet - Burna",
+            meelee: false,
+            range: 12,
+            attacks: "d6",
+            proficiency: 0,
+            strength: "5",
+            armour_penetration: -1,
+            damage: "1"
+        }, {
+            name: "Killa Jet - Cutta",
+            meelee: false,
+            range: 12,
+            attacks: "1",
+            proficiency: 5,
+            strength: "9",
+            armour_penetration: -4,
+            damage: "d6"
+        }, {
+            name: "Snagga Klaw",
+            meelee: true,
+            range: 0,
+            attacks: "4",
+            proficiency: 3,
+            strength: "10",
+            armour_penetration: -2,
+            damage: "2"
+        }
+    ], "Makari" = [
+        {
+            name: "Makari's Stabba",
+            meelee: true,
+            range: 0,
+            attacks: "1",
+            proficiency: 4,
+            strength: "3",
+            armour_penetration: 0,
+            damage: "1"
+        }
+    ], "Ghazghkull Thraka" = [
+        {
+            name: "Mork's Roar",
+            meelee: false,
+            range: 36,
+            attacks: "12",
+            proficiency: 5,
+            strength: "5",
+            armour_penetration: 0,
+            damage: "1"
+        }, {
+            name: "Gork's Klaw - Strike",
+            meelee: true,
+            range: 0,
+            attacks: "6",
+            proficiency: 2,
+            strength: "14",
+            armour_penetration: -3,
+            damage: "4"
+        }, {
+            name: "Gork's Klaw - Sweep",
+            meelee: true,
+            range: 0,
+            attacks: "12",
+            proficiency: 2,
+            strength: "8",
+            armour_penetration: -2,
+            damage: "2"
+        }
+    ], "Mek" = [
+        {
+            name: "Kustom Mega-Slugga",
+            meelee: false,
+            range: 12,
+            attacks: "d3",
+            proficiency: 5,
+            strength: "8",
+            armour_penetration: -2,
+            damage: "d6"
+        }, {
+            name: "Killsaw",
+            meelee: true,
+            range: 0,
+            attacks: "1",
+            proficiency: 4,
+            strength: "12",
+            armour_penetration: -3,
+            damage: "2"
+        }, {
+            name: "Wrench",
+            meelee: true,
+            range: 0,
+            attacks: "3",
+            proficiency: 3,
+            strength: "4",
+            armour_penetration: 0,
+            damage: "1"
+        }
+    ], "Mozrog Skragbad" = [
+        {
+            name: "Thump Gun",
+            meelee: false,
+            range: 18,
+            attacks: "d3",
+            proficiency: 5,
+            strength: "6",
+            armour_penetration: 0,
+            damage: "2"
+        }, {
+            name: "Big Chompa's Jaws",
+            meelee: true,
+            range: 0,
+            attacks: "3",
+            proficiency: 3,
+            strength: "7",
+            armour_penetration: -2,
+            damage: "4"
+        }, {
+            name: "Gutrippa",
+            meelee: true,
+            range: 0,
+            attacks: "6",
+            proficiency: 2,
+            strength: "7",
+            armour_penetration: -1,
+            damage: "3"
+        }
+    ], "Painboss" = [
+        {
+            name: "Beast Snagga Klaw",
+            meelee: true,
+            range: 0,
+            attacks: "3",
+            proficiency: 4,
+            strength: "9",
+            armour_penetration: -2,
+            damage: "2"
+        }
+    ], "Painboy" = [
+        {
+            name: "Power Klaw",
+            meelee: true,
+            range: 0,
+            attacks: "3",
+            proficiency: 4,
+            strength: "9",
+            armour_penetration: -2,
+            damage: "2"
+        }, {
+            name: "Urty Syringe",
+            meelee: true,
+            range: 0,
+            attacks: "1",
+            proficiency: 3,
+            strength: "2",
+            armour_penetration: 0,
+            damage: "1"
+        }
+    ], "Warboss" = [
+        {
+            name: "Kombi-Weapon",
+            meelee: false,
+            range: 24,
+            attacks: "1",
+            proficiency: 5,
+            strength: "4",
+            armour_penetration: 0,
+            damage: "1"
+        }, {
+            name: "Attack Squig",
+            meelee: true,
+            range: 0,
+            attacks: "2",
+            proficiency: 4,
+            strength: "4",
+            armour_penetration: 0,
+            damage: "1"
+        }, {
+            name: "Power Klaw",
+            meelee: true,
+            range: 0,
+            attacks: "4",
+            proficiency: 3,
+            strength: "10",
+            armour_penetration: -2,
+            damage: "2"
+        }
+    ], "Warboss In Mega Armour" = [
+        {
+            name: "Big Shoota",
+            meelee: false,
+            range: 36,
+            attacks: "3",
+            proficiency: 4,
+            strength: "5",
+            armour_penetration: 0,
+            damage: "1"
+        }, {
+            name: "Uge Choppa",
+            meelee: true,
+            range: 0,
+            attacks: "4",
+            proficiency: 2,
+            strength: "12",
+            armour_penetration: -2,
+            damage: "2"
+        }
+    ], "Weirdboy" = [
+        {
+            name: "Eadbanger",
+            meelee: false,
+            range: 24,
+            attacks: "1",
+            proficiency: 4,
+            strength: "6",
+            armour_penetration: -3,
+            damage: "1"
+        }, {
+            name: "Weirdboy Staff",
+            meelee: true,
+            range: 0,
+            attacks: "3",
+            proficiency: 3,
+            strength: "8",
+            armour_penetration: -1,
+            damage: "d3"
+        }
+    ], "Wurrboy" = [
+        {
+            name: "Eyez of Mork",
+            meelee: false,
+            range: 18,
+            attacks: "d6",
+            proficiency: 5,
+            strength: "8",
+            armour_penetration: -3,
+            damage: "2"
+        }, {
+            name: "Close Combat Weapon",
+            meelee: true,
+            range: 0,
+            attacks: "3",
+            proficiency: 3,
+            strength: "5",
+            armour_penetration: 0,
+            damage: "1"
+        }
+    ], "Zodgrod Wortsnagga" = [
+        {
+            name: "Slugga",
+            meelee: false,
+            range: 12,
+            attacks: "1",
+            proficiency: 5,
+            strength: "4",
+            armour_penetration: -1,
+            damage: "1"
+        }, {
+            name: "Da Grabzappa",
+            meelee: true,
+            range: 0,
+            attacks: "5",
+            proficiency: 2,
+            strength: "7",
+            armour_penetration: -2,
+            damage: "2"
+        }
+    ], "Beast Snagga Boyz - Nob" = [
+
+    ], "Beast Snagga Boyz - Boy" = [
+
+    ], "Boyz - Boss Nob" = [
+
+    ], "Boyz - Boy" = [
+
+    ], "Trukk" = [
+
+    ], "Big’ed Bossbunka" = [
+
+    ], "Battlewagon" = [
+
+    ], "Blitza-bommer" = [
+
+    ], "Boomdakka Snazzwagon" = [
+
+    ], "Burna Boyz - Spanner" = [
+
+    ], "Burna Boyz - Boy" = [
+
+    ], "Burna-bommer" = [
+
+    ], "Dakkajet" = [
+
+    ], "Deff Dread" = [
+
+    ], "Deffkoptas" = [
+
+    ], "Flash Gitz" = [
+
+    ], "Gorkanaut" = [
+
+    ], "Gretchin - Runtherd" = [
+
+    ], "Gretchin - Grot" = [
+
+    ], "Hunta Rig" = [
+
+    ], "Kill Rig" = [
+
+    ], "Killa Kans" = [
+
+    ], "Kommandos - Boss Nob" = [
+
+    ], "Kommandos - Kommando" = [
+
+    ], "Lootas - Spanner" = [
+
+    ], "Lootas - Loota" = [
+
+    ], "Meganobz" = [
+
+    ], "Megatrakk Scrapjet" = [
+
+    ], "Mek Gunz" = [
+
+    ], "Morkanaut" = [
+
+    ], "Nobz" = [
+
+    ], "Rukkatrukk Squigbuggy" = [
+
+    ], "Shokkjump Dragsta" = [
+
+    ], "Squighog Boyz - Nob on Smasha Squig" = [
+
+    ], "Squighog Boyz - Squighog Boy" = [
+
+    ], "Stompa" = [
+
+    ], "Stormboy - Boss Nob" = [
+
+    ], "Stormboy - Stormboy" = [
+
+    ], "Warbikers - Boss Nob on Warbike" = [
+
+    ], "Warbikers - Warbiker" = [
+
+    ], "Wazbom Blastajet" = [
+
+    ], "Breaka Boyz - Boy" = [
+
+    ], "Breaka Boyz - Boss Nob" = [
+
+    ], "Tankbustas - Boss Nob" = [
+
+    ], "Tankbustas - Tankbusta" = [
+
+    ], "Gargantuan Squiggoth" = [
+
+    ]
+}
+
 weapons = [
     armoured_hull = {
         name: "Armoured Hull",
@@ -240,6 +813,16 @@ weapons = [
         armour_penetration: -1,
         damage: "2"
     },
+    deffkannon = {
+        name: "Deffkannon",
+        meelee: false,
+        range: 72,
+        attacks: "3d6",
+        proficiency: 5,
+        strength: "14",
+        armour_penetration: -3,
+        damage: "d6"
+    },  
     deffstorm_mega_shoota = {
         name: "Deffstorm Mega-Shoota",
         meelee: false,
@@ -390,6 +973,26 @@ weapons = [
         armour_penetration: -1,
         damage: "3"
     },
+    huge_tusk_strike = {
+        name: "Huge Tusk - Strike",
+        meelee: true,
+        range: 0,
+        attacks: "6",
+        proficiency: 3,
+        strength: "14",
+        armour_penetration: -3,
+        damage: "12"
+    },
+    huge_tusk_sweep = {
+        name: "Huge Tusk - Sweep",
+        meelee: true,
+        range: 0,
+        attacks: "18",
+        proficiency: 3,
+        strength: "9",
+        armour_penetration: -2,
+        damage: "3"
+    },
     kan_klaw = {
         name: "Kan Klaw",
         meelee: true,
@@ -510,6 +1113,16 @@ weapons = [
         armour_penetration: -1,
         damage: "2"
     },
+    knucklebustas = {
+        name: "Knucklebustas",
+        meelee: true,
+        range: 0,
+        attacks: "5",
+        proficiency: 3,
+        strength: "5",
+        armour_penetration: -1,
+        damage: "1"
+    },
     kombi_weapon = {
         name: "Kombi-Weapon",
         meelee: false,
@@ -610,6 +1223,26 @@ weapons = [
         armour_penetration: 0,
         damage: "1"
     },
+    mega_choppa_strike = {
+        name: "Mega Choppa - Strike",
+        meelee: true,
+        range: 0,
+        attacks: "6",
+        proficiency: 3,
+        strength: "24",
+        armour_penetration: -5,
+        damage: "10"
+    },
+    mega_choppa_sweep = {
+        name: "Mega-Choppa - Sweep",
+        meelee: true,
+        range: 0,
+        attacks: "18",
+        proficiency: 3,
+        strength: "10",
+        armour_penetration: -2,
+        damage: "3"
+    },
     mek_speshul = {
         name: "Mek Speshul",
         meelee: false,
@@ -629,6 +1262,16 @@ weapons = [
         strength: "5",
         armour_penetration: 0,
         damage: "1"
+    },
+    morks_teeth = {
+        name: "Mork's Teeth",
+        meelee: true,
+        range: 0,
+        attacks: "6",
+        proficiency: 2,
+        strength: "6",
+        armour_penetration: -1,
+        damage: "2"
     },
     nose_drill = {
         name: "Nose Drill",
@@ -675,6 +1318,16 @@ weapons = [
         meelee: false,
         range: 24,
         attacks: "d3",
+        proficiency: 5,
+        strength: "9",
+        armour_penetration: -2,
+        damage: "3"
+    },
+    rokkit_pistol = {
+        name: "Rokkit Pistol",
+        meelee: false,
+        range: 12,
+        attacks: "1",
         proficiency: 5,
         strength: "9",
         armour_penetration: -2,
@@ -810,6 +1463,16 @@ weapons = [
         armour_penetration: -3,
         damage: "3"
     },
+    smash_hammer = {
+        name: "Smash Hammer",
+        meelee: true,
+        range: 0,
+        attacks: "2",
+        proficiency: 3,
+        strength: "6",
+        armour_penetration: -2,
+        damage: "3"
+    },
     snagga_klaw = {
         name: "Snagga Klaw",
         meelee: true,
@@ -870,6 +1533,26 @@ weapons = [
         armour_penetration: 0,
         damage: "1"
     },
+    stikka_meelee = {
+        name: "Stikka",
+        meelee: true,
+        range: 0,
+        attacks: "3",
+        proficiency: 3,
+        strength: "5",
+        armour_penetration: -1,
+        damage: "2"
+    },
+    stikka_ranged = {
+        name: "Stikka",
+        meelee: false,
+        range: 9,
+        attacks: "1",
+        proficiency: 5,
+        strength: "5",
+        armour_penetration: -1,
+        damage: "2"
+    },
     stikka_kannon = {
         name: "Stikka Kannon",
         meelee: false,
@@ -890,6 +1573,36 @@ weapons = [
         armour_penetration: 0,
         damage: "1"
     },
+    supa_gatler = {
+        name: "Supa-Gatler",
+        meelee: false,
+        range: 24,
+        attacks: "20",
+        proficiency: 5,
+        strength: "7",
+        armour_penetration: -1,
+        damage: "2"
+    },
+    supa_kannon = {
+        name: "Supa-Kannon",
+        meelee: false,
+        range: 60,
+        attacks: "2d6",
+        proficiency: 5,
+        strength: "12",
+        armour_penetration: -2,
+        damage: "3"
+    },
+    supa_rokkits = {
+        name: "Supa-Rokkits",
+        meelee: false,
+        range: 100,
+        attacks: "d6",
+        proficiency: 5,
+        strength: "12",
+        armour_penetration: -3,
+        damage: "d6+2"
+    },
     squig_launchas = {
         name: "Squig Launchas",
         meelee: false,
@@ -900,6 +1613,16 @@ weapons = [
         armour_penetration: -1,
         damage: "2"
     },
+    squighog_jaws_and_saddlegits = {
+        name: "Squighog Jaws and Saddlegits",
+        meelee: true,
+        range: 0,
+        attacks: "3",
+        proficiency: 4,
+        strength: "6",
+        armour_penetration: -1,
+        damage: "2"
+    },
     squigosaurs_jaws = {
         name: "Squigosaur's Jaws",
         meelee: true,
@@ -907,6 +1630,16 @@ weapons = [
         attacks: "3",
         proficiency: 4,
         strength: "7",
+        armour_penetration: -2,
+        damage: "3"
+    },
+    tankhammer = {
+        name: "Tankhammer",
+        meelee: true,
+        range: 0,
+        attacks: "2",
+        proficiency: 3,
+        strength: "6",
         armour_penetration: -2,
         damage: "3"
     },
@@ -970,6 +1703,16 @@ weapons = [
         armour_penetration: 0,
         damage: "1"
     },
+    twin_dakkagun = {
+        name: "Twin Dakkagun",
+        meelee: false,
+        range: 28,
+        attacks: "3",
+        proficiency: 5,
+        strength: "5",
+        armour_penetration: 0,
+        damage: "1"
+    },
     twin_killsaw = {
         name: "Twin Killsaw",
         meelee: true,
@@ -999,6 +1742,26 @@ weapons = [
         strength: "6",
         armour_penetration: -1,
         damage: "1"
+    },
+    twin_tellyport_mega_blasta = {
+        name: "Twin Tellyport Mega-Blasta",
+        meelee: false,
+        range: 24,
+        attacks: "3",
+        proficiency: 5,
+        strength: "9",
+        armour_penetration: -1,
+        damage: "d6+1"
+    },
+    twin_wazbom_mega_kannon = {
+        name: "Twin Wazbom Mega-Kannon",
+        meelee: false,
+        range: 36,
+        attacks: "d3",
+        proficiency: 4,
+        strength: "12",
+        armour_penetration: -2,
+        damage: "d6"
     },
     uge_choppa = {
         name: "Uge Choppa",
@@ -1049,6 +1812,16 @@ weapons = [
         strength: "10",
         armour_penetration: 0,
         damage: "d6"
+    },
+    wrench = {
+        name: "Wrench",
+        meelee: true,
+        range: 0,
+        attacks: "3",
+        proficiency: 3,
+        strength: "4",
+        armour_penetration: 0,
+        damage: "1"
     },
     wurrtower = {
         name: "Wurrtower",

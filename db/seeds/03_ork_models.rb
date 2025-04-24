@@ -215,6 +215,23 @@ Model.create({
 })
 
 Model.create({
+    name: "Painboy",
+    description: "The traditional tools of the Painboy help them to patch up even the most mangled Orks and send them back into the fight. Helpfully, all these gruesome surgical klaws, rippy saws and fat syringes also serve as an expedient means of dismembering the enemy with – if not surgical precision – at least a great deal of enthusiasm!",
+    movement: 6,
+    army_id: orks_army_id,
+    cost: 80,
+    min_squad: 1,
+    max_squad: 1,
+    unit_limit: 1,
+    toughness: 5,
+    armour_save: 5,
+    invuln_save: 0,
+    wounds: 3,
+    leadership: 7,
+    obj_control: 1
+})
+
+Model.create({
     name: "Warboss",
     description: "A towering slab of muscle, fangs and bad attitude, the Warboss leads the charge from the very front. With klaw, fist and dakka the green behemoth bulldozes a bloody path through the enemy. Meanwhile, his window-rattling war cry and weapons-grade glower motivate his ladz to ever more gratuitous violence.",
     movement: 6,
