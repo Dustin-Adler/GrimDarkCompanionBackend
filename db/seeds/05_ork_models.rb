@@ -1,4 +1,6 @@
-orks_army_id = Army.find_by(name: "Orks").id
+puts "createing Ork models..."
+
+orks_army_id = Army.find_by(name: $grim_dark_armies[:ORKS]).id
 
 Model.create({
     name: "Beastboss",
@@ -1119,3 +1121,5 @@ Model.create({
     leadership: 7,
     obj_control: 1
 })
+
+puts "Created Ork models successfully"

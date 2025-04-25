@@ -18,16 +18,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_22_205728) do
     t.string "name", null: false
     t.text "description", null: false
     t.text "rule", null: false
-    t.text "example", null: false
-    t.string "tldr", null: false
+    t.text "example"
+    t.text "tldr", null: false
+    t.string "ability_type", null: false
+    t.integer "model_id"
+    t.integer "army_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ability_type"], name: "index_abilities_on_ability_type"
+    t.index ["army_id"], name: "index_abilities_on_army_id"
+    t.index ["model_id"], name: "index_abilities_on_model_id"
+    t.index ["name"], name: "index_abilities_on_name"
   end
 
   create_table "armies", force: :cascade do |t|
     t.string "name", null: false
     t.string "description", null: false
-    t.integer "ability_id", null: false
     t.string "alliance", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -148,14 +154,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_22_205728) do
     t.index ["model_id", "keyword_id"], name: "index_model_keywords_on_model_id_and_keyword_id", unique: true
   end
 
-  create_table "model_weapons", force: :cascade do |t|
-    t.integer "model_id", null: false
-    t.integer "weapon_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["model_id", "weapon_id"], name: "index_model_weapons_on_model_id_and_weapon_id", unique: true
-  end
-
   create_table "models", force: :cascade do |t|
     t.string "name", null: false
     t.string "description", null: false
@@ -188,6 +186,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_22_205728) do
 
   create_table "strategems", force: :cascade do |t|
     t.string "name", null: false
+    t.text "flavour_text", null: false
     t.integer "cost", null: false
     t.string "when", null: false
     t.string "target", null: false
@@ -209,8 +208,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_22_205728) do
     t.string "name", null: false
     t.string "note"
     t.integer "list_id", null: false
-    t.integer "leader_one_id", null: false
-    t.integer "leader_two_id", null: false
+    t.integer "leader_one_id"
+    t.integer "leader_two_id"
     t.integer "squad_id", null: false
     t.string "squad_quantity", null: false
     t.integer "enhancement_id"

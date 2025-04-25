@@ -2,6 +2,7 @@ class CreateStrategems < ActiveRecord::Migration[8.0]
   def change
     create_table :strategems do |t|
       t.string :name, null: false
+      t.text :flavour_text, null: false
       t.integer :cost, null: false
       t.string :when, null: false
       t.string :target, null: false
