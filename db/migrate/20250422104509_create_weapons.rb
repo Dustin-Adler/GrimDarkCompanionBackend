@@ -9,6 +9,7 @@ class CreateWeapons < ActiveRecord::Migration[8.0]
       t.string :strength, null: false
       t.integer :armour_penetration, null: false, default: 0
       t.string :damage, null: false
+      t.integer :model_id, null: false
 
       t.timestamps
     end
