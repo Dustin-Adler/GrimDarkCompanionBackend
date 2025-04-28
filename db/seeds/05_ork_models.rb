@@ -1,6 +1,6 @@
 puts "createing Ork models..."
 
-orks_army_id = Army.find_by(name: $grim_dark_armies[:ORKS]).id
+orks_army_id = $grim_dark_armies["Orks"].id
 
 Model.create({
     name: "Beastboss",
@@ -1121,5 +1121,9 @@ Model.create({
     leadership: 7,
     obj_control: 1
 })
+
+# saving useful static information so all lookup times are reduced from n to 1
+$ork_models = {}
+Model.where(army_id: orks_army_id).each { |model| $ork_models[model.name] = model }
 
 puts "Created Ork models successfully"

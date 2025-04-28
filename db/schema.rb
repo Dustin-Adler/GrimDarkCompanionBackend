@@ -16,10 +16,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_22_205728) do
 
   create_table "abilities", force: :cascade do |t|
     t.string "name", null: false
-    t.text "description", null: false
+    t.text "flavour_text"
     t.text "rule", null: false
     t.text "example"
-    t.text "tldr", null: false
+    t.text "tldr"
     t.string "ability_type", null: false
     t.integer "model_id"
     t.integer "army_id"

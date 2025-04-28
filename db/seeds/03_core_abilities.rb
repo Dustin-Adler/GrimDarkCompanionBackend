@@ -23,7 +23,7 @@ def create_core_abilities(core_abilities)
     core_abilities.each do |ability_name, ability_data|
         Ability.create({
             name: ability_data[:name],
-            description: ability_data[:description],
+            flavour_text: ability_data[:flavour_text],
             rule: ability_data[:rule],
             example: ability_data[:example],
             tldr: ability_data[:tldr],
@@ -35,7 +35,7 @@ end
 core_abilities = {}
 core_abilities["Deep Strike"] = {
     name: "Deep Strike",
-    description: "Some units make their way to battle via tunnelling, teleportation, high-altitude descent or other extraordinary means that allow them 
+    flavour_text: "Some units make their way to battle via tunnelling, teleportation, high-altitude descent or other extraordinary means that allow them 
         to appear suddenly in the thick of the fighting.",
     rule: "During the Declare Battle Formations step, if every model in a unit has this ability, you can set it up in Reserves instead of setting it up on the battlefield. 
         If you do, in the Reinforcements step of one of your Movement phases you can set up this unit anywhere on the battlefield that is more than 9\" 
@@ -46,7 +46,7 @@ core_abilities["Deep Strike"] = {
 
 core_abilities["Infiltrate"] = {
     name: "Infiltrate",
-    description: "Many armies employ reconnaissance units who can sit concealed, waiting for the right moment to strike.",
+    flavour_text: "Many armies employ reconnaissance units who can sit concealed, waiting for the right moment to strike.",
     rule: "During deployment, if every model in a unit has this ability, then when you set it up, it can be set up anywhere on the battlefield that is more than 9\" 
         horizontally away from the enemy deployment zone and all enemy models.",
     
@@ -55,14 +55,14 @@ core_abilities["Infiltrate"] = {
 
 core_abilities["Stealth"] = {
     name: "Stealth",
-    description: "Some units are able to conceal themselves from enemy sight, making them harder to target.",
+    flavour_text: "Some units are able to conceal themselves from enemy sight, making them harder to target.",
     rule: "If every model in a unit has this ability, then each time a ranged attack is made against it, subtract 1 from that attack’s Hit roll.",
     tldr: "-1 to hit from ranged attacks against this unit."
 }
 
 core_abilities["Feel No Pain"] = {
     name: "Feel No Pain",
-    description: "Some warriors refuse to be laid low, even by what should be fatal wounds.",
+    flavour_text: "Some warriors refuse to be laid low, even by what should be fatal wounds.",
     rule: "Some models have ‘Feel No Pain x+’ listed in their abilities. Each time a model with this ability suffers damage and so would lose a wound 
         (including wounds lost due to mortal wounds), roll one D6: if the result is greater than or equal to the number denoted by ‘x’, that wound is ignored and is not lost. 
         If a model has more than one Feel No Pain ability, you can only use one of those abilities each time that model suffers damage and so would lose a wound.",
@@ -73,7 +73,7 @@ core_abilities["Feel No Pain"] = {
 
 core_abilities["Leader"] = {
     name: "Leader",
-    description: "Mighty heroes fight at the forefront of battle.",
+    flavour_text: "Mighty heroes fight at the forefront of battle.",
     rule: "Some CHARACTER units have ‘Leader’ listed on their datasheets. Such CHARACTER units are known as Leaders, and the units they can lead – known 
         as their Bodyguard units – are listed on their datasheet. During the Declare Battle Formations step, for each Leader in your army, if your army 
         also includes one or more of that Leader’s Bodyguard units, you can select one of those Bodyguard units. That Leader will then attach to that Bodyguard 
@@ -104,14 +104,14 @@ core_abilities["Leader"] = {
 
 core_abilities["Lone Operative"] = {
     name: "Lone Operative",
-    description: "Assassins and other covert agents are difficult to track and pinpoint in the swirling maelstrom of battle.",
+    flavour_text: "Assassins and other covert agents are difficult to track and pinpoint in the swirling maelstrom of battle.",
     rule: "Unless part of an Attached unit (see Leader), this unit can only be selected as the target of a ranged attack if the attacking model is within 12\".",
     tldr: "Unless part of an Attached unit, this unit can only be selected as the target of a ranged attack if the attacking model is within 12\"."
 }
 
 core_abilities["Deadly Demise"] = {
     name: "Deadly Demise",
-    description: "From detonating ammo stores to corrosive innards or frenzied death throes, some targets are deadly even in defeat.",
+    flavour_text: "From detonating ammo stores to corrosive innards or frenzied death throes, some targets are deadly even in defeat.",
     rule: "Some models have ‘Deadly Demise x’ listed in their abilities. When such a model is destroyed, roll one D6 before removing it from play 
         (if such a model is a TRANSPORT, roll before any embarked models disembark). On a 6, each unit within 6\" of that model suffers a number of mortal 
         wounds denoted by ‘x’ (if this is a random number, roll separately for each unit within 6\").",
@@ -123,7 +123,7 @@ core_abilities["Deadly Demise"] = {
 
 core_abilities["Scouts"] = {
     name: "Scouts",
-    description: "Scouts form the vanguard of many armies. Unnoticed by the enemy, they range ahead of the main force.",
+    flavour_text: "Scouts form the vanguard of many armies. Unnoticed by the enemy, they range ahead of the main force.",
     rule: "Some units have ‘Scouts x\"’ listed in their abilities. If every model in a unit has this ability, then at the start of the first battle round, 
         before the first turn begins, it can make a Normal move of up to x\", with the exception that, while making that move, the distance moved by each model in 
         that unit can be greater than that model's Move characteristic, as long as it is not greater than x\".
@@ -142,7 +142,7 @@ core_abilities["Scouts"] = {
 
 core_abilities["Firing Deck"] = {
     name: "Firing Deck",
-    description: "Some transports have firing hatches, ports or platforms from which embarked passengers can shoot.",
+    flavour_text: "Some transports have firing hatches, ports or platforms from which embarked passengers can shoot.",
     rule: "Some TRANSPORT models have ‘Firing Deck x’ listed in their abilities. Each time such a model is selected to shoot in the Shooting phase, 
         you can select up to ‘x’ models embarked within it whose units have not already shot this phase. Then, for each of those embarked models, 
         you can select one ranged weapon that embarked model is equipped with (excluding weapons with the [ONE SHOT] ability). Until that TRANSPORT model 
@@ -154,7 +154,7 @@ core_abilities["Firing Deck"] = {
 
 core_abilities["Fights First"] = {
     name: "Fights First",
-    description: "Some warriors attack with blinding speed, landing their blows before their foes can react.",
+    flavour_text: "Some warriors attack with blinding speed, landing their blows before their foes can react.",
     rule: "Units with this ability that are eligible to fight do so in the Fights First step, provided every model in the unit has this ability.",
     tldr: "Hits first in Fight phase, even when not your turn."
 }

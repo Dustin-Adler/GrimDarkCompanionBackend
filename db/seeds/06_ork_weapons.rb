@@ -2,11 +2,9 @@
 puts "creating Ork weapons..."
 
 def create_weapons(ork_weapons)
-    orks_army_id = Army.find_by(name: $grim_dark_armies[:ORKS]).id
-    orks = Model.where(army_id: orks_army_id)
-    orks.each do |ork|
-        puts "#{ork.name}'s weapons were not able to be created" if ork_weapons[ork.name].nil?
-        ork_weapons[ork.name].each do |weapon|
+    $ork_models.each do |ork_name, ork_details|
+        puts "Failed to create #{ork_name}'s weapons" unless ork_weapons[ork_name]
+        ork_weapons[ork_name].each do |weapon|
             Weapon.create({
                 name: weapon[:name],
                 meelee: weapon[:meelee],
@@ -16,7 +14,7 @@ def create_weapons(ork_weapons)
                 strength: weapon[:strength],
                 armour_penetration: weapon[:armour_penetration],
                 damage: weapon[:damage],
-                model_id: ork.id
+                model_id: ork_details.id
             })
         end
     end
