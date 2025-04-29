@@ -249,6 +249,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_22_205728) do
     t.integer "armour_penetration", default: 0, null: false
     t.string "damage", null: false
     t.integer "model_id", null: false
+    t.integer "num_equip", default: 1, null: false
+    t.boolean "default", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

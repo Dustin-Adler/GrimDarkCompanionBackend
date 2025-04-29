@@ -1,29 +1,21 @@
 
 any_users = User.first
+User.destroy_all if any_users
+
 any_armies = Army.first
+Army.destroy_all if any_armies
+
+any_keywords = Keyword.first
+Keyword.destroy_all if any_keywords
+
 any_abilities = Ability.first
+Ability.destroy_all if any_abilities
+
 any_models = Model.first
+Model.destroy_all if any_models
+
 any_weapons = Weapon.first
-
-if any_users
-    User.destroy_all
-end
-
-if any_armies
-    Army.destroy_all
-end
-
-if any_abilities
-    Ability.destroy_all
-end
-
-if any_models
-    Model.destroy_all
-end
-
-if any_weapons
-    Weapon.destroy_all
-end
+Weapon.destroy_all if any_weapons
 
 Dir[File.join(Rails.root, "db", "seeds", "*.rb")].sort.each do |seed|
 
