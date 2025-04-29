@@ -736,6 +736,23 @@ kommandos_boss_nob = Model.create({
 })
 kommandos_kommando.update(affiliate_model_id: kommandos_boss_nob.id)
 
+kustom_boosta_blasta = Model.create({
+    name: "Kustom Boosta-Blasta",
+    description: "Meks who build Kustom Boosta-blastas have the alarming habit of wiring themselves into the vehicles’ rivet kannons as though into very fast and shooty Deff Dreads. They then speed to war, aiming hails of arm-length metal rivets at the enemy while scorching them with the Boosta-blasta’s flame-jetting exhausts.",
+    movement: 12,
+    army_id: orks_army_id,
+    cost: 75,
+    min_squad: 1,
+    max_squad: 1,
+    unit_limit: 1,
+    toughness: 7,
+    armour_save: 4,
+    invuln_save: 6,
+    wounds: 9,
+    leadership: 7,
+    obj_control: 3
+})
+
 lootas_loota = Model.create({
     name: "Lootas - Loota",
     description: "Lootas grub together every toof and fistful of scrap they can, then use the former to pay the Meks to turn the latter into very, very large guns. These they then turn on the enemy with gleeful abandon, unleashing such prodigious – if erratic – hails of fire that they can stop a battle tank in its tracks or scythe down squads of infantry.",
