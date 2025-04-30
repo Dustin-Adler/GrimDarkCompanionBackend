@@ -1,0 +1,42 @@
+<%= form_with(model: wargear_option) do |form| %>
+  <% if wargear_option.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(wargear_option.errors.count, "error") %> prohibited this wargear_option from being saved:</h2>
+
+      <ul>
+        <% wargear_option.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :model_id, style: "display: block" %>
+    <%= form.number_field :model_id %>
+  </div>
+
+  <div>
+    <%= form.label :add_to_model, style: "display: block" %>
+    <%= form.number_field :add_to_model %>
+  </div>
+
+  <div>
+    <%= form.label :weapon_swaps, style: "display: block" %>
+    <%= form.number_field :weapon_swaps %>
+  </div>
+
+  <div>
+    <%= form.label :for_n_models, style: "display: block" %>
+    <%= form.number_field :for_n_models %>
+  </div>
+
+  <div>
+    <%= form.label :n_models_weapon_swap, style: "display: block" %>
+    <%= form.number_field :n_models_weapon_swap %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

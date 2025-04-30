@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Wargear options" %>
+
+<h1>Wargear options</h1>
+
+<div id="wargear_options">
+  <% @wargear_options.each do |wargear_option| %>
+    <%= render wargear_option %>
+    <p>
+      <%= link_to "Show this wargear option", wargear_option %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New wargear option", new_wargear_option_path %>

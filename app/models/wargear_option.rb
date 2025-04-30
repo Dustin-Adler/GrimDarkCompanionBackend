@@ -1,0 +1,2 @@
+class WargearOption < ApplicationRecord
+end

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @wargear_option %>
+
+<div>
+  <%= link_to "Edit this wargear option", edit_wargear_option_path(@wargear_option) %> |
+  <%= link_to "Back to wargear options", wargear_options_path %>
+
+  <%= button_to "Destroy this wargear option", @wargear_option, method: :delete %>
+</div>

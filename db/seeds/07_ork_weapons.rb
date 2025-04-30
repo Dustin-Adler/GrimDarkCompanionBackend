@@ -1,6 +1,26 @@
 # This file contains all of information for all weapons for all ork models and assigns
 puts "creating Ork weapons..."
 
+# class CreateWeapons < ActiveRecord::Migration[8.0]
+#     def change
+#       create_table :weapons do |t|
+#         t.string :name, null: false
+#         t.boolean :meelee, null: false
+#         t.integer :range, null: false
+#         t.string :attacks, null: false
+#         t.integer :proficiency, null: false
+#         t.string :strength, null: false
+#         t.integer :armour_penetration, null: false, wargear_type: 0
+#         t.string :damage, null: false
+#         t.integer :model_id, null: false
+#         t.integer :equip_limit, null: false, wargear_type: 1
+#         t.string :wargear_type, null: false
+  
+#         t.timestamps
+#       end
+#     end
+#   end
+
 def create_weapons(ork_weapons)
     $ork_models.each do |ork_name, ork_details|
         puts "Failed to create #{ork_name}'s weapons" unless ork_weapons[ork_name]
@@ -8,17 +28,24 @@ def create_weapons(ork_weapons)
             Weapon.create({
                 name: weapon[:name],
                 meelee: weapon[:meelee],
-                range: weapon[:range],
+                range: weapon[:range] unless weapon[:meelee],
                 attacks: weapon[:attacks],
                 proficiency: weapon[:proficiency],
                 strength: weapon[:strength],
                 armour_penetration: weapon[:armour_penetration],
                 damage: weapon[:damage],
+                equip_limit: weapon[:equip_limit] if weapon[:equip_limit],
+                wargear_type: weapon[:wargear_type],
                 model_id: ork_details.id
             })
         end
     end
 end
+
+WARGEAR_TYPES = {
+    DEFAULT_LOADOUT => "DEFAULT LOADOUT",
+    ALTERNATE_LOADOUT => "ALTERNATE LOADOUT",
+}
 
 ork_weapons = {}
 ork_weapons["Beastboss"] = [
@@ -31,7 +58,7 @@ ork_weapons["Beastboss"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     },  {
         name: "Beast Snagga Klaw",
         meelee: true,
@@ -41,7 +68,7 @@ ork_weapons["Beastboss"] = [
         strength: "10",
         armour_penetration: -2,
         damage: "2",
-        default: true
+        wargear_type: true
     },  {
         name: "Beastchoppa",
         meelee: true,
@@ -51,7 +78,7 @@ ork_weapons["Beastboss"] = [
         strength: "6",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -65,7 +92,7 @@ ork_weapons["Beastboss On Squigosaur"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Thump Gun",
         meelee: false,
@@ -84,7 +111,7 @@ ork_weapons["Beastboss On Squigosaur"] = [
         strength: "6",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Squigosaur's Jaws",
         meelee: true,
@@ -94,7 +121,7 @@ ork_weapons["Beastboss On Squigosaur"] = [
         strength: "7",
         armour_penetration: -2,
         damage: "3",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -108,7 +135,7 @@ ork_weapons["Big Mek"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "d6",
-        default: true
+        wargear_type: true
     }, {
         name: "Traktor Blasta",
         meelee: false,
@@ -136,7 +163,7 @@ ork_weapons["Big Mek"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -159,7 +186,7 @@ ork_weapons["Big Mek In Mega Armour"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "d6",
-        default: true
+        wargear_type: true
     }, {
         name: "Kustom Shoota",
         meelee: false,
@@ -196,7 +223,7 @@ ork_weapons["Big Mek In Mega Armour"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -210,7 +237,7 @@ ork_weapons["Big Mek With Shokk Attack Gun"] = [
         strength: "9",
         armour_penetration: -4,
         damage: "d6",
-        default: true
+        wargear_type: true
     }, {
         name: "Close Combat Weapon",
         meelee: true,
@@ -220,7 +247,7 @@ ork_weapons["Big Mek With Shokk Attack Gun"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -234,7 +261,7 @@ ork_weapons["Boss Snikrot"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Mork's Teeth",
         meelee: true,
@@ -244,7 +271,7 @@ ork_weapons["Boss Snikrot"] = [
         strength: "6",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -258,7 +285,7 @@ ork_weapons["Deffkilla Wartrike"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Killa Jet - Burna",
         meelee: false,
@@ -268,7 +295,7 @@ ork_weapons["Deffkilla Wartrike"] = [
         strength: "5",
         armour_penetration: -1,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Killa Jet - Cutta",
         meelee: false,
@@ -278,7 +305,7 @@ ork_weapons["Deffkilla Wartrike"] = [
         strength: "9",
         armour_penetration: -4,
         damage: "d6",
-        default: true
+        wargear_type: true
     }, {
         name: "Snagga Klaw",
         meelee: true,
@@ -288,7 +315,7 @@ ork_weapons["Deffkilla Wartrike"] = [
         strength: "10",
         armour_penetration: -2,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -302,7 +329,7 @@ ork_weapons["Makari"] = [
         strength: "3",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -316,7 +343,7 @@ ork_weapons["Ghazghkull Thraka"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Gork's Klaw - Strike",
         meelee: true,
@@ -326,7 +353,7 @@ ork_weapons["Ghazghkull Thraka"] = [
         strength: "14",
         armour_penetration: -3,
         damage: "4",
-        default: true
+        wargear_type: true
     }, {
         name: "Gork's Klaw - Sweep",
         meelee: true,
@@ -336,7 +363,7 @@ ork_weapons["Ghazghkull Thraka"] = [
         strength: "8",
         armour_penetration: -2,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -350,7 +377,7 @@ ork_weapons["Mek"] = [
         strength: "8",
         armour_penetration: -2,
         damage: "d6",
-        default: true
+        wargear_type: true
     }, {
         name: "Killsaw",
         meelee: true,
@@ -369,7 +396,7 @@ ork_weapons["Mek"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -383,7 +410,7 @@ ork_weapons["Mozrog Skragbad"] = [
         strength: "6",
         armour_penetration: 0,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Big Chompa's Jaws",
         meelee: true,
@@ -393,7 +420,7 @@ ork_weapons["Mozrog Skragbad"] = [
         strength: "7",
         armour_penetration: -2,
         damage: "4",
-        default: true
+        wargear_type: true
     }, {
         name: "Gutrippa",
         meelee: true,
@@ -403,7 +430,7 @@ ork_weapons["Mozrog Skragbad"] = [
         strength: "7",
         armour_penetration: -1,
         damage: "3",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -417,7 +444,7 @@ ork_weapons["Painboss"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -431,7 +458,7 @@ ork_weapons["Painboy"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Urty Syringe",
         meelee: true,
@@ -441,7 +468,7 @@ ork_weapons["Painboy"] = [
         strength: "2",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -455,7 +482,7 @@ ork_weapons["Warboss"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Attack Squig",
         meelee: true,
@@ -483,7 +510,7 @@ ork_weapons["Warboss"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Big Choppa",
         meelee: true,
@@ -493,7 +520,7 @@ ork_weapons["Warboss"] = [
         strength: "8",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -507,7 +534,7 @@ ork_weapons["Warboss In Mega Armour"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Uge Choppa",
         meelee: true,
@@ -517,7 +544,7 @@ ork_weapons["Warboss In Mega Armour"] = [
         strength: "12",
         armour_penetration: -2,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -531,7 +558,7 @@ ork_weapons["Weirdboy"] = [
         strength: "6",
         armour_penetration: -3,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Weirdboy Staff",
         meelee: true,
@@ -541,7 +568,7 @@ ork_weapons["Weirdboy"] = [
         strength: "8",
         armour_penetration: -1,
         damage: "d3",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -555,7 +582,7 @@ ork_weapons["Wurrboy"] = [
         strength: "8",
         armour_penetration: -3,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Close Combat Weapon",
         meelee: true,
@@ -565,7 +592,7 @@ ork_weapons["Wurrboy"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -579,7 +606,7 @@ ork_weapons["Zodgrod Wortsnagga"] = [
         strength: "4",
         armour_penetration: -1,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Da Grabzappa",
         meelee: true,
@@ -589,7 +616,7 @@ ork_weapons["Zodgrod Wortsnagga"] = [
         strength: "7",
         armour_penetration: -2,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -603,7 +630,7 @@ ork_weapons["Beast Snagga Boyz - Nob"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Power Snappa",
         meelee: true,
@@ -613,7 +640,7 @@ ork_weapons["Beast Snagga Boyz - Nob"] = [
         strength: "7",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -627,7 +654,7 @@ ork_weapons["Beast Snagga Boyz - Boy"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Thump Gun",
         meelee: false,
@@ -646,7 +673,7 @@ ork_weapons["Beast Snagga Boyz - Boy"] = [
         strength: "5",
         armour_penetration: 1,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Close Combat Weapon",
         meelee: true,
@@ -669,7 +696,7 @@ ork_weapons["Boyz - Boss Nob"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     },{
         name: "Kombi-Weapon",
         meelee: false,
@@ -688,7 +715,7 @@ ork_weapons["Boyz - Boss Nob"] = [
         strength: "7",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     },{
         name: "Power Klaw",
         meelee: true,
@@ -720,7 +747,7 @@ ork_weapons["Boyz - Boy"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Shoota",
         meelee: false,
@@ -757,7 +784,7 @@ ork_weapons["Boyz - Boy"] = [
         strength: "5",
         armour_penetration: 1,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -771,7 +798,7 @@ ork_weapons["Trukk"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Spiked Wheels",
         meelee: true,
@@ -781,7 +808,7 @@ ork_weapons["Trukk"] = [
         strength: "6",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Wreckin' Ball",
         meelee: true,
@@ -804,7 +831,7 @@ ork_weapons["Big’ed Bossbunka"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Gaze of Gork - Glare",
         meelee: false,
@@ -814,7 +841,7 @@ ork_weapons["Big’ed Bossbunka"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Gaze of Gork - Squint",
         meelee: false,
@@ -824,7 +851,7 @@ ork_weapons["Big’ed Bossbunka"] = [
         strength: "12",
         armour_penetration: -4,
         damage: "3",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -910,7 +937,7 @@ ork_weapons["Battlewagon"] = [
         strength: "8",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     },  {
         name: "Wreckin' Ball",
         meelee: true,
@@ -933,7 +960,7 @@ ork_weapons["Blitza-bommer"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Twin Supa-Shoota",
         meelee: false,
@@ -943,7 +970,7 @@ ork_weapons["Blitza-bommer"] = [
         strength: "6",
         armour_penetration: -1,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Armoured Hull",
         meelee: true,
@@ -953,7 +980,7 @@ ork_weapons["Blitza-bommer"] = [
         strength: "6",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -967,7 +994,7 @@ ork_weapons["Boomdakka Snazzwagon"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Grot Blasta",
         meelee: false,
@@ -977,7 +1004,7 @@ ork_weapons["Boomdakka Snazzwagon"] = [
         strength: "3",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Mek Speshul",
         meelee: false,
@@ -987,7 +1014,7 @@ ork_weapons["Boomdakka Snazzwagon"] = [
         strength: "5",
         armour_penetration: -1,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Spiked Wheels",
         meelee: true,
@@ -997,7 +1024,7 @@ ork_weapons["Boomdakka Snazzwagon"] = [
         strength: "7",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1011,7 +1038,7 @@ ork_weapons["Burna Boyz - Spanner"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Close Combat Weapon",
         meelee: true,
@@ -1021,7 +1048,7 @@ ork_weapons["Burna Boyz - Spanner"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Kustom Mega-Blasta",
         meelee: false,
@@ -1053,7 +1080,7 @@ ork_weapons["Burna Boyz - Boy"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Cuttin' Flames",
         meelee: true,
@@ -1063,7 +1090,7 @@ ork_weapons["Burna Boyz - Boy"] = [
         strength: "4",
         armour_penetration: -2,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1077,7 +1104,7 @@ ork_weapons["Burna-bommer"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Twin Supa-Shoota",
         meelee: false,
@@ -1087,7 +1114,7 @@ ork_weapons["Burna-bommer"] = [
         strength: "6",
         armour_penetration: -1,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Skorcha Missle Rack",
         meelee: false,
@@ -1106,7 +1133,7 @@ ork_weapons["Burna-bommer"] = [
         strength: "6",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1121,7 +1148,7 @@ ork_weapons["Dakkajet"] = [
         armour_penetration: -1,
         damage: "1",
         num_equip: 2,
-        default: true
+        wargear_type: true
     },  {
         name: "Armoured Hull",
         meelee: true,
@@ -1131,7 +1158,7 @@ ork_weapons["Dakkajet"] = [
         strength: "6",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1146,7 +1173,7 @@ ork_weapons["Deff Dread"] = [
         armour_penetration: 0,
         damage: "1",
         num_equip: 2,
-        default: true
+        wargear_type: true
     }, {
         name: "Kustom Mega-Blasta",
         meelee: false,
@@ -1184,7 +1211,7 @@ ork_weapons["Deff Dread"] = [
         armour_penetration: -2,
         damage: "3",
         num_equip: 2,
-        default: true
+        wargear_type: true
     }, {
         name: "Stompy Feet",
         meelee: true,
@@ -1194,7 +1221,7 @@ ork_weapons["Deff Dread"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1208,7 +1235,7 @@ ork_weapons["Deffkoptas"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "3",
-        default: true
+        wargear_type: true
     }, {
         name: "Kustom Mega-Blasta",
         meelee: false,
@@ -1227,7 +1254,7 @@ ork_weapons["Deffkoptas"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     },  {
         name: "Spinnin' Blades",
         meelee: true,
@@ -1237,7 +1264,7 @@ ork_weapons["Deffkoptas"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1251,7 +1278,7 @@ ork_weapons["Flash Gitz"] = [
         strength: "6",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Choppa",
         meelee: true,
@@ -1261,7 +1288,7 @@ ork_weapons["Flash Gitz"] = [
         strength: "5",
         armour_penetration: 1,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1275,7 +1302,7 @@ ork_weapons["Gorkanaut"] = [
         strength: "6",
         armour_penetration: -1,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Rokkit Launcha",
         meelee: false,
@@ -1286,7 +1313,7 @@ ork_weapons["Gorkanaut"] = [
         armour_penetration: -2,
         damage: "3",
         num_equip: 2,
-        default: true
+        wargear_type: true
     }, {
         name: "Skorcha",
         meelee: false,
@@ -1296,7 +1323,7 @@ ork_weapons["Gorkanaut"] = [
         strength: "5",
         armour_penetration: -1,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Twin Big Shoota",
         meelee: false,
@@ -1307,7 +1334,7 @@ ork_weapons["Gorkanaut"] = [
         armour_penetration: 0,
         damage: "1",
         num_equip: 2,
-        default: true
+        wargear_type: true
     }, {
         name: "Klaw of Gork - Strike",
         meelee: true,
@@ -1317,7 +1344,7 @@ ork_weapons["Gorkanaut"] = [
         strength: "18",
         armour_penetration: -3,
         damage: "6",
-        default: true
+        wargear_type: true
     }, {
         name: "Klaw of Gork - Sweep",
         meelee: true,
@@ -1327,7 +1354,7 @@ ork_weapons["Gorkanaut"] = [
         strength: "8",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1341,7 +1368,7 @@ ork_weapons["Gretchin - Runtherd"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Runtherd Tools",
         meelee: true,
@@ -1351,7 +1378,7 @@ ork_weapons["Gretchin - Runtherd"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1365,7 +1392,7 @@ ork_weapons["Gretchin - Grot"] = [
         strength: "3",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Close Combat Weapon",
         meelee: true,
@@ -1375,7 +1402,7 @@ ork_weapons["Gretchin - Grot"] = [
         strength: "2",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1389,7 +1416,7 @@ ork_weapons["Hunta Rig"] = [
         strength: "6",
         armour_penetration: 0,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Stikka Kannon",
         meelee: false,
@@ -1399,7 +1426,7 @@ ork_weapons["Hunta Rig"] = [
         strength: "12",
         armour_penetration: -2,
         damage: "3",
-        default: true
+        wargear_type: true
     }, {
         name: "Butcha Boyz",
         meelee: true,
@@ -1409,7 +1436,7 @@ ork_weapons["Hunta Rig"] = [
         strength: "5",
         armour_penetration: -1,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Savage Horns and Hooves",
         meelee: true,
@@ -1419,7 +1446,7 @@ ork_weapons["Hunta Rig"] = [
         strength: "8",
         armour_penetration: -1,
         damage: "3",
-        default: true
+        wargear_type: true
     }, {
         name: "Saw Blades",
         meelee: true,
@@ -1429,7 +1456,7 @@ ork_weapons["Hunta Rig"] = [
         strength: "10",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1443,7 +1470,7 @@ ork_weapons["Kill Rig"] = [
         strength: "6",
         armour_penetration: 0,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Stikka Kannon",
         meelee: false,
@@ -1453,7 +1480,7 @@ ork_weapons["Kill Rig"] = [
         strength: "12",
         armour_penetration: -2,
         damage: "3",
-        default: true
+        wargear_type: true
     }, {
         name: "Wurrtower",
         meelee: false,
@@ -1463,7 +1490,7 @@ ork_weapons["Kill Rig"] = [
         strength: "12",
         armour_penetration: -3,
         damage: "d6",
-        default: true
+        wargear_type: true
     }, {
         name: "Butcha Boyz",
         meelee: true,
@@ -1473,7 +1500,7 @@ ork_weapons["Kill Rig"] = [
         strength: "5",
         armour_penetration: -1,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Savage Horns and Hooves",
         meelee: true,
@@ -1483,7 +1510,7 @@ ork_weapons["Kill Rig"] = [
         strength: "8",
         armour_penetration: -1,
         damage: "3",
-        default: true
+        wargear_type: true
     },  {
         name: "Saw Blades",
         meelee: true,
@@ -1493,7 +1520,7 @@ ork_weapons["Kill Rig"] = [
         strength: "10",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1507,7 +1534,7 @@ ork_weapons["Killa Kans"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Grotzooka",
         meelee: false,
@@ -1544,7 +1571,7 @@ ork_weapons["Killa Kans"] = [
         strength: "8",
         armour_penetration: -2,
         damage: "3",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1558,7 +1585,7 @@ ork_weapons["Kommandos - Boss Nob"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     },  {
         name: "Choppa",
         meelee: true,
@@ -1568,7 +1595,7 @@ ork_weapons["Kommandos - Boss Nob"] = [
         strength: "4",
         armour_penetration: 1,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Big Choppa",
         meelee: true,
@@ -1600,7 +1627,7 @@ ork_weapons["Kommandos - Kommando"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     },  {
         name: "Choppa",
         meelee: true,
@@ -1610,7 +1637,7 @@ ork_weapons["Kommandos - Kommando"] = [
         strength: "4",
         armour_penetration: 1,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Speshul Kommando Shoota",
         meelee: false,
@@ -1669,7 +1696,7 @@ ork_weapons["Kustom Boosta-Blasta"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Grot Blasta",
         meelee: false,
@@ -1679,7 +1706,7 @@ ork_weapons["Kustom Boosta-Blasta"] = [
         strength: "3",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Rivet Kannon",
         meelee: false,
@@ -1689,7 +1716,7 @@ ork_weapons["Kustom Boosta-Blasta"] = [
         strength: "8",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Spiked Ram",
         meelee: true,
@@ -1699,7 +1726,7 @@ ork_weapons["Kustom Boosta-Blasta"] = [
         strength: "7",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1713,7 +1740,7 @@ ork_weapons["Lootas - Spanner"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Kustom Mega-Blasta",
         meelee: false,
@@ -1741,7 +1768,7 @@ ork_weapons["Lootas - Spanner"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1755,7 +1782,7 @@ ork_weapons["Lootas - Loota"] = [
         strength: "8",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Close Combat Weapon",
         meelee: true,
@@ -1765,7 +1792,7 @@ ork_weapons["Lootas - Loota"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1788,7 +1815,7 @@ ork_weapons["Meganobz"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Killsaw",
         meelee: true,
@@ -1807,7 +1834,7 @@ ork_weapons["Meganobz"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "2",
-        default: true
+        wargear_type: true
     },  {
         name: "Twin Killsaw",
         meelee: true,
@@ -1830,7 +1857,7 @@ ork_weapons["Megatrakk Scrapjet"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "3",
-        default: true
+        wargear_type: true
     }, {
         name: "Twin Big Shoota",
         meelee: false,
@@ -1841,7 +1868,7 @@ ork_weapons["Megatrakk Scrapjet"] = [
         armour_penetration: 0,
         damage: "1",
         num_equip: 2,
-        default: true
+        wargear_type: true
     }, {
         name: "Wing Missiles",
         meelee: false,
@@ -1851,7 +1878,7 @@ ork_weapons["Megatrakk Scrapjet"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "3",
-        default: true
+        wargear_type: true
     }, {
         name: "Nose Drill",
         meelee: true,
@@ -1861,7 +1888,7 @@ ork_weapons["Megatrakk Scrapjet"] = [
         strength: "8",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1911,7 +1938,7 @@ ork_weapons["Mek Gunz"] = [
         strength: "9",
         armour_penetration: -3,
         damage: "3",
-        default: true
+        wargear_type: true
     }, {
         name: "Traktor Kannon",
         meelee: false,
@@ -1930,7 +1957,7 @@ ork_weapons["Mek Gunz"] = [
         strength: "2",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -1944,7 +1971,7 @@ ork_weapons["Morkanaut"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "d6",
-        default: true
+        wargear_type: true
     }, {
         name: "Kustom Mega-Zappa",
         meelee: false,
@@ -1954,7 +1981,7 @@ ork_weapons["Morkanaut"] = [
         strength: "10",
         armour_penetration: -2,
         damage: "d6",
-        default: true
+        wargear_type: true
     }, {
         name: "Rokkit Launcha",
         meelee: false,
@@ -1965,7 +1992,7 @@ ork_weapons["Morkanaut"] = [
         armour_penetration: -2,
         damage: "3",
         num_equip: 2,
-        default: true
+        wargear_type: true
     }, {
         name: "Twin Big Shoota",
         meelee: false,
@@ -1976,7 +2003,7 @@ ork_weapons["Morkanaut"] = [
         armour_penetration: 0,
         damage: "1",
         num_equip: 2,
-        default: true
+        wargear_type: true
     }, {
         name: "Klaw of Mork - Strike",
         meelee: true,
@@ -1986,7 +2013,7 @@ ork_weapons["Morkanaut"] = [
         strength: "18",
         armour_penetration: -3,
         damage: "6",
-        default: true
+        wargear_type: true
     }, {
         name: "Klaw of Mork - Sweep",
         meelee: true,
@@ -1996,7 +2023,7 @@ ork_weapons["Morkanaut"] = [
         strength: "8",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -2019,7 +2046,7 @@ ork_weapons["Nobz"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Big Choppa",
         meelee: true,
@@ -2029,7 +2056,7 @@ ork_weapons["Nobz"] = [
         strength: "7",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Close Combat Weapon",
         meelee: true,
@@ -2061,7 +2088,7 @@ ork_weapons["Rukkatrukk Squigbuggy"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Squig Launchas",
         meelee: false,
@@ -2071,7 +2098,7 @@ ork_weapons["Rukkatrukk Squigbuggy"] = [
         strength: "5",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Saw Blades",
         meelee: true,
@@ -2081,7 +2108,7 @@ ork_weapons["Rukkatrukk Squigbuggy"] = [
         strength: "7",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -2095,7 +2122,7 @@ ork_weapons["Shokkjump Dragsta"] = [
         strength: 8,
         armour_penetration: -2,
         damage: "d6+1",
-        default: true
+        wargear_type: true
     }, {
         name: "Rokkit Launcha",
         meelee: false,
@@ -2105,7 +2132,7 @@ ork_weapons["Shokkjump Dragsta"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "3",
-        default: true
+        wargear_type: true
     }, {
         name: "Saw Blades",
         meelee: true,
@@ -2115,7 +2142,7 @@ ork_weapons["Shokkjump Dragsta"] = [
         strength: "7",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -2129,7 +2156,7 @@ ork_weapons["Squighog Boyz - Nob on Smasha Squig"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Big Choppa",
         meelee: true,
@@ -2139,7 +2166,7 @@ ork_weapons["Squighog Boyz - Nob on Smasha Squig"] = [
         strength: "7",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Squighog Jaws and Saddlegits",
         meelee: true,
@@ -2149,7 +2176,7 @@ ork_weapons["Squighog Boyz - Nob on Smasha Squig"] = [
         strength: "6",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -2163,7 +2190,7 @@ ork_weapons["Squighog Boyz - Squighog Boy"] = [
         strength: "5",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Stikka",
         meelee: false,
@@ -2173,7 +2200,7 @@ ork_weapons["Squighog Boyz - Squighog Boy"] = [
         strength: "5",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Saddlegit Weapons",
         meelee: false,
@@ -2183,7 +2210,7 @@ ork_weapons["Squighog Boyz - Squighog Boy"] = [
         strength: "3",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Squighog Jaws and Saddlegits",
         meelee: true,
@@ -2193,7 +2220,7 @@ ork_weapons["Squighog Boyz - Squighog Boy"] = [
         strength: "6",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -2208,7 +2235,7 @@ ork_weapons["Stompa"] = [
         armour_penetration: 0,
         damage: "1",
         num_equip: 3,
-        default: true
+        wargear_type: true
     },  {
         name: "Deffkannon",
         meelee: false,
@@ -2218,7 +2245,7 @@ ork_weapons["Stompa"] = [
         strength: "14",
         armour_penetration: -3,
         damage: "d6",
-        default: true
+        wargear_type: true
     }, {
         name: "Skorcha",
         meelee: false,
@@ -2228,7 +2255,7 @@ ork_weapons["Stompa"] = [
         strength: "5",
         armour_penetration: -1,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Supa-Gatler",
         meelee: false,
@@ -2238,7 +2265,7 @@ ork_weapons["Stompa"] = [
         strength: "7",
         armour_penetration: -1,
         damage: "2",
-        default: true
+        wargear_type: true
     }, {
         name: "Supa-Rokkits",
         meelee: false,
@@ -2248,7 +2275,7 @@ ork_weapons["Stompa"] = [
         strength: "12",
         armour_penetration: -3,
         damage: "d6+2",
-        default: true
+        wargear_type: true
     }, {
         name: "Twin Big Shoota",
         meelee: false,
@@ -2258,7 +2285,7 @@ ork_weapons["Stompa"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Mega-Choppa - Strike",
         meelee: true,
@@ -2268,7 +2295,7 @@ ork_weapons["Stompa"] = [
         strength: "24",
         armour_penetration: -5,
         damage: "10",
-        default: true
+        wargear_type: true
     }, {
         name: "Mega-Choppa - Sweep",
         meelee: true,
@@ -2278,7 +2305,7 @@ ork_weapons["Stompa"] = [
         strength: "10",
         armour_penetration: -2,
         damage: "3",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -2301,7 +2328,7 @@ ork_weapons["Stormboy - Boss Nob"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Choppa",
         meelee: true,
@@ -2311,7 +2338,7 @@ ork_weapons["Stormboy - Boss Nob"] = [
         strength: "4",
         armour_penetration: 1,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -2325,7 +2352,7 @@ ork_weapons["Stormboy - Stormboy"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Choppa",
         meelee: true,
@@ -2335,7 +2362,7 @@ ork_weapons["Stormboy - Stormboy"] = [
         strength: "4",
         armour_penetration: 1,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -2349,7 +2376,7 @@ ork_weapons["Warbikers - Boss Nob on Warbike"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Close Combat Weapon",
         meelee: true,
@@ -2359,7 +2386,7 @@ ork_weapons["Warbikers - Boss Nob on Warbike"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     },{
         name: "Power Klaw",
         meelee: true,
@@ -2382,7 +2409,7 @@ ork_weapons["Warbikers - Warbiker"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Close Combat Weapon",
         meelee: true,
@@ -2392,7 +2419,7 @@ ork_weapons["Warbikers - Warbiker"] = [
         strength: "4",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Slugga",
         meelee: false,
@@ -2424,7 +2451,7 @@ ork_weapons["Wazbom Blastajet"] = [
         strength: "9",
         armour_penetration: -3,
         damage: "4",
-        default: true
+        wargear_type: true
     }, {
         name: "Twin Wazbom Mega-Kannon",
         meelee: false,
@@ -2434,7 +2461,7 @@ ork_weapons["Wazbom Blastajet"] = [
         strength: "12",
         armour_penetration: -2,
         damage: "d6",
-        default: true
+        wargear_type: true
     }, {
         name: "Twin Supa-Shoota",
         meelee: false,
@@ -2462,7 +2489,7 @@ ork_weapons["Wazbom Blastajet"] = [
         strength: "6",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -2476,7 +2503,7 @@ ork_weapons["Breaka Boyz - Boy"] = [
         strength: "6",
         armour_penetration: -2,
         damage: "3",
-        default: true
+        wargear_type: true
     }, {
         name: "Knucklebustas",
         meelee: true,
@@ -2508,7 +2535,7 @@ ork_weapons["Breaka Boyz - Boss Nob"] = [
         strength: "6",
         armour_penetration: -2,
         damage: "3",
-        default: true
+        wargear_type: true
     }, {
         name: "Rokkit Pistol",
         meelee: false,
@@ -2518,7 +2545,7 @@ ork_weapons["Breaka Boyz - Boss Nob"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "3",
-        default: true,
+        wargear_type: true,
     }, {
         name: "Choppa",
         meelee: true,
@@ -2528,7 +2555,7 @@ ork_weapons["Breaka Boyz - Boss Nob"] = [
         strength: "5",
         armour_penetration: 1,
         damage: "1",
-        default: true
+        wargear_type: true
     }
 ]
 
@@ -2543,7 +2570,7 @@ ork_weapons["Tankbustas - Boss Nob"] = [
         armour_penetration: -2,
         damage: "3",
         num_equip: 2,
-        default: true
+        wargear_type: true
     }, {
         name: "Choppa",
         meelee: true,
@@ -2553,7 +2580,7 @@ ork_weapons["Tankbustas - Boss Nob"] = [
         strength: "5",
         armour_penetration: 1,
         damage: "1",
-        default: true
+        wargear_type: true
     }, {
         name: "Smash Hammer",
         meelee: true,
@@ -2576,7 +2603,7 @@ ork_weapons["Tankbustas - Tankbusta"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "3",
-        default: true
+        wargear_type: true
     }, {
         name: "Close Combat Weapon",
         meelee: true,
@@ -2586,7 +2613,7 @@ ork_weapons["Tankbustas - Tankbusta"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        default: true
+        wargear_type: true
     },
 ]
 
@@ -2627,7 +2654,7 @@ ork_weapons["Gargantuan Squiggoth"] = [
         strength: "14",
         armour_penetration: -3,
         damage: "12",
-        default: true
+        wargear_type: true
     }, {
         name: "Huge Tusk - Sweep",
         meelee: true,
@@ -2637,10 +2664,25 @@ ork_weapons["Gargantuan Squiggoth"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "3",
-        default: true
+        wargear_type: true
     }
 ]
 
 create_weapons(ork_weapons)
+
+def get_ork_weapons()
+    ork_ids = {}
+    $ork_models.each do |model_name, model_details|
+        ork_ids[model_details.id] = model_name
+    end
+    ork_weapons = {}
+    Weapon.where(model_id: ork_ids.keys).each do |weapon|
+        ork_weapons[ork_ids[weapon.model_id]] = [] if ork_weapons[ork_ids[weapon.model_id]].nil?
+        ork_weapons[ork_ids[weapon.model_id]] << weapon
+    end
+    ork_weapons
+end
+
+$ork_weapons = get_ork_weapons()
 
 puts "Ork weapons created successfully."
