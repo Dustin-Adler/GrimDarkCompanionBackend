@@ -170,6 +170,22 @@ weapon_abilities["Anti"] = {
     tldr: "Lowers threshold for Critical Wounds against ‘keyword’ target to ‘x’."
 }
 
+weapon_abilities["Snagged"] = {
+    name: "Snagged",
+    flavour_text: "Get Ova Here!",
+    rule: "Each time this weapon scores a hit against a MONSTER or VEHICLE unit, until the end of the turn, if the bearer selects that unit as a 
+        target of a charge, add 2 to Charge rolls made for the bearer and enemy units cannot use the Fire Overwatch Stratagem to shoot at the bearer.",
+    tldr: "If this weapon wounds a MONSTER or VEHICLES gain: +2 to Charge against said wounded enemy and Immunity to Fire Overwatch Stratagem."
+}
+
+weapon_abilities["Bubblechukka"] = {
+    name: "Bubblechukka",
+    flavour_text: "They wiggle and they wobble, but they might Waahhhg! your house down.",
+    rule: "Before selecting targets for this weapon, roll one D6 to determine which of its profiles to make attacks with, comparing the result with the numbers shown on the left.",
+    example: "If you have a Unit with 3 Bubblechukkas, when selecting the unit to shoot roll 1 d6 per Bubblechukka. Then select a target for each Bubblechukka using it's rolled profile.",
+    tldr: "Roll 1D6 per Bubblechukka to determine which profile to use before selecting a target."
+}
+
 create_weapon_abilities(weapon_abilities)
 
 puts "Created weapon abilities successfully"
