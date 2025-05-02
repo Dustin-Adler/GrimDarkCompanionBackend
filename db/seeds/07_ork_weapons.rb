@@ -26,38 +26,76 @@ puts "creating Ork weapons..."
 def create_weapons(ork_weapons)
     $ork_models.each do |ork_name, ork_details|
         puts "Failed to create #{ork_name}'s weapons" unless ork_weapons[ork_name]
+        multi_prof_weapons = {}
         ork_weapons[ork_name].each do |weapon|
-            Weapon.create({
+            weapon.weapon_id = multi_prof_weapons[weapon[:name]].id if multi_prof_weapons[weapon[:name]]
+            new_weapon = Weapon.create({
                 name: weapon[:name],
                 meelee: weapon[:meelee],
-                range: weapon[:range] unless weapon[:meelee],
+                range: weapon[:range],
                 attacks: weapon[:attacks],
                 proficiency: weapon[:proficiency],
                 strength: weapon[:strength],
-                armour_penetration: weapon[:armour_penetration] if weapon[:armour_penetration],
+                armour_penetration: weapon[:armour_penetration],
                 damage: weapon[:damage],
-                equip_limit: weapon[:equip_limit] if weapon[:equip_limit],
-                wargear_types: weapon[:wargear_types] if weapon[:wargear_types],
+                equipped: weapon[:equipped],
+                equip_limit: weapon[:equip_limit],
+                wargear_types: weapon[:wargear_types],
                 model_id: ork_details.id
             })
+
+            if weapon[:weapon_id]
+                if weapon[:weapon_id].is_a?(Integer)
+                    new_weapon.update(weapon_id: weapon.weapon_id) 
+                elsif weapon[:weapon_id].is_a?(String)
+                    multi_prof_weapons[weapon[:weapon_id]] = weapon[:id]
+                end
+            end
+
+            # if the new_weapon has a weapon_id, then it has found a matching weapon profile in multi_prof_weapons.
+            # We need to update the weapon_id of the matched weapon from multi_prof_weapons. It was created first, and so
+            # there was no weapon id to save into the weapon_id row at the time of creation.
+            if new_weapon.weapon_id
+                linked_weapon_profile = Weapon.find(multi_prof_weapons[new_weapon.name])
+                linked_weapon_profile.update(weapon_id: new_weapon.id)
+                multi_prof_weapons.delete(new_weapon.name)
+            end
+
+            # if the weapon has a value for weapon_id, but can't find a matching profile in multi_prof_weapons, then it's a multi_prof weapon 
+            # but it's match or matches haven't been created yet. We save the profile in multi_prof_weapons using the value that was found in weapon_id.
+            # weapon_id should be the name of the matching weapon profile, so we use that as the key.
         end
     end
 end
 
+# Method used to create a hash of all ork weapons
+def get_ork_weapons()
+    ork_ids = {}
+    $ork_models.each do |model_name, model_details|
+        ork_ids[model_details.id] = model_name
+    end
+    ork_weapons = {}
+    Weapon.where(model_id: ork_ids.keys).each do |weapon|
+        ork_weapons[ork_ids[weapon.model_id]] = [] if ork_weapons[ork_ids[weapon.model_id]].nil?
+        ork_weapons[ork_ids[weapon.model_id]] << weapon
+    end
+    ork_weapons
+end
+
 wargear_types = {
     DEFAULT: "DEFAULT",
-    ADD_ANY => "ADD_ANY",
-    ALT_1 => "ALT_1",
-    ALT_2 => "ALT_2",
-    ALT_3 => "ALT_3",
-    ALT_4 => "ALT_4",
-    ALT_5 => "ALT_5",
-    FOR_N_MODELS_ONE => "FOR_N_MODELS_ONE",
-    FOR_N_MODELS_TWO => "FOR_N_MODELS_TWO",
-    FIRST_SELECT_ONE => "FIRST_SELECT_ONE",
-    SECOND_SELECT_ONE => "SECOND_SELECT_ONE",
-    THIRD_SELECT_ONE => "THIRD_SELECT_ONE",
-    FOURTH_SELECT_ONE => "FOURTH_SELECT_ONE"
+    ADD_ANY: "ADD_ANY",
+    ALT_1: "ALT_1",
+    ALT_2: "ALT_2",
+    ALT_3: "ALT_3",
+    ALT_4: "ALT_4",
+    ALT_5: "ALT_5",
+    FOR_N_MODELS_ONE: "FOR_N_MODELS_ONE",
+    FOR_N_MODELS_TWO: "FOR_N_MODELS_TWO",
+    FIRST_SELECT_ONE: "FIRST_SELECT_ONE",
+    SECOND_SELECT_ONE: "SECOND_SELECT_ONE",
+    THIRD_SELECT_ONE: "THIRD_SELECT_ONE",
+    FOURTH_SELECT_ONE: "FOURTH_SELECT_ONE"
 }
 
 ork_weapons = {}
@@ -590,7 +628,7 @@ ork_weapons["Warboss"] = [
         strength: "8",
         armour_penetration: -1,
         damage: "2",
-        equipped: 1
+        equipped: 1,
         wargear_types: [wargear_types[:FIRST_SELECT_ONE]]
     }
 ]
@@ -1195,7 +1233,7 @@ ork_weapons["Burna Boyz - Boy"] = [
         proficiency: 0,
         strength: "4",
         armour_penetration: 0,
-        damage: "1",,
+        damage: "1",
         equip_limit: 4,
         equipped: 4
     }, {
@@ -2302,7 +2340,7 @@ ork_weapons["Nobz"] = [
         armour_penetration: -1,
         damage: "2",
         equip_limit: 5,
-        equipped: 5
+        equipped: 5,
         wargear_types: [wargear_types[:FIRST_SELECT_ONE]]
     }, {
         name: "Close Combat Weapon",
@@ -3019,19 +3057,6 @@ ork_weapons["Gargantuan Squiggoth"] = [
 ]
 
 create_weapons(ork_weapons)
-
-def get_ork_weapons()
-    ork_ids = {}
-    $ork_models.each do |model_name, model_details|
-        ork_ids[model_details.id] = model_name
-    end
-    ork_weapons = {}
-    Weapon.where(model_id: ork_ids.keys).each do |weapon|
-        ork_weapons[ork_ids[weapon.model_id]] = [] if ork_weapons[ork_ids[weapon.model_id]].nil?
-        ork_weapons[ork_ids[weapon.model_id]] << weapon
-    end
-    ork_weapons
-end
 
 $ork_weapons = get_ork_weapons()
 

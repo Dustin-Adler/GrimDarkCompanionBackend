@@ -88,7 +88,6 @@ keywords = [
     "Walker",
     "Warbikers",
     "Warboss",
-    "Warboss",
     "Warboss In Mega Armour",
     "Wazbom Blastajet",
     "Weirdboy",

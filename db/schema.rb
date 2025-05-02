@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_22_205728) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_29_191806) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -231,6 +231,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_22_205728) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  create_table "wargear_options", force: :cascade do |t|
+    t.integer "model_id", null: false
+    t.integer "default_loadout", null: false, array: true
+    t.integer "weapon_loadouts", default: [], array: true
+    t.integer "add_any", default: [], array: true
+    t.integer "select_one", default: [], array: true
+    t.integer "for_n_models"
+    t.integer "for_n_models_weapon_swap", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "weapon_abilities", force: :cascade do |t|
     t.integer "weapon_id", null: false
     t.integer "ability_id", null: false
@@ -242,15 +254,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_22_205728) do
   create_table "weapons", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "meelee", null: false
-    t.integer "range", null: false
+    t.integer "range", default: 0
     t.string "attacks", null: false
     t.integer "proficiency", null: false
     t.string "strength", null: false
-    t.integer "armour_penetration", default: 0, null: false
+    t.integer "armour_penetration", default: 0
     t.string "damage", null: false
+    t.integer "equipped", default: 0
+    t.integer "equip_limit", default: 1
     t.integer "model_id", null: false
-    t.integer "num_equip", default: 1, null: false
-    t.boolean "default", default: false, null: false
+    t.integer "weapon_id"
+    t.string "wargear_types", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
