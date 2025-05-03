@@ -13,6 +13,50 @@
 #     end
 #   end
 
+require_relative '../db/seeds/07_orks_weapons.rb'
+
+def create_wargear_options(wargear_options) 
+   $orks_models_and_weapons.each do |model_name, weapons_array|
+      weapons_array.each do |weapon|
+         unless weapon.wargear_types.empty?
+            weapon.wargear_types.each do |wargear_type|
+               case wargear_type
+                  when WARGEAR_TYPES[:ADD_ANY]
+                     wargear_options[model_name][:add_any] << weapon.id
+                  when WARGEAR_TYPES[:ALT_1]
+                     wargear_options[model_name][:weapon_loadouts] << weapon.id
+                  when WARGEAR_TYPES[:ALT_2]
+                     wargear_options[model_name][:weapon_loadouts] << weapon.id
+                  when WARGEAR_TYPES[:ALT_3]
+                     wargear_options[model_name][:weapon_loadouts] << weapon.id
+                  when WARGEAR_TYPES[:ALT_4]
+                     wargear_options[model_name][:weapon_loadouts] << weapon.id
+                  when WARGEAR_TYPES[:ALT_5]
+                     wargear_options[model_name][:weapon_loadouts] << weapon.id
+                  when WARGEAR_TYPES[:FOR_N_MODELS_ONE]
+                     wargear_options[model_name][:for_n_models_weapon_swap] << weapon.id
+                  when WARGEAR_TYPES[:FOR_N_MODELS_TWO]
+                     wargear_options[model_name][:for_n_models_weapon_swap] << weapon.id
+                  when WARGEAR_TYPES[:FIRST_SELECT_ONE]
+                     wargear_options[model_name][:select_one] << weapon.id
+                  when WARGEAR_TYPES[:SECOND_SELECT_ONE]
+                     wargear_options[model_name][:select_one] << weapon.id
+                  when WARGEAR_TYPES[:THIRD_SELECT_ONE]
+                     wargear_options[model_name][:select_one] << weapon.id
+                  when WARGEAR_TYPES[:FOURTH_SELECT_ONE]
+                     wargear_options[model_name][:select_one] << weapon.id
+         end
+         
+
+         wargear_options[model_name]
+         weapon_loadouts: [],
+         add_any: [],
+         select_one: [],
+         for_n_models: 0,
+         for_n_models_weapon_swap: []
+      end
+   end
+end
 
 
 wargear_options = {}
@@ -536,3 +580,5 @@ wargear_options = {}
     for_n_models: 0,
     for_n_models_weapon_swap: []
  }
+
+ create_wargear_options(wargear_options)
