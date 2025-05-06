@@ -1,21 +1,4 @@
-# require_relative '07_ork_weapons.rb'
-
 puts "creating Ork wargear options..."
-
-WARGEAR_TYPES = {
-    ADD_ANY: "ADD_ANY",
-    ALT_1: "ALT_1",
-    ALT_2: "ALT_2",
-    ALT_3: "ALT_3",
-    ALT_4: "ALT_4",
-    ALT_5: "ALT_5",
-    FOR_N_MODELS_ONE: "FOR_N_MODELS_ONE",
-    FOR_N_MODELS_TWO: "FOR_N_MODELS_TWO",
-    FIRST_SELECT_ONE: "FIRST_SELECT_ONE",
-    SECOND_SELECT_ONE: "SECOND_SELECT_ONE",
-    THIRD_SELECT_ONE: "THIRD_SELECT_ONE",
-    FOURTH_SELECT_ONE: "FOURTH_SELECT_ONE"
-}
 
 def create_wargear_type_for_wargear_options(wargear_options_hash, wargear_option, weapon_wargear_type, weapon_id, models_per_weapon = nil)
    wargear_options_hash[wargear_option] = [] if wargear_options_hash[wargear_option].nil?

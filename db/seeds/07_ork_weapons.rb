@@ -1,27 +1,19 @@
-# This file contains all of information for all weapons for all ork models and assigns
 puts "creating Ork weapons..."
 
-# class CreateWeapons < ActiveRecord::Migration[8.0]
-#     def change
-#       create_table :weapons do |t|
-#         t.string :name, null: false
-#         t.boolean :meelee, null: false
-#         t.integer :range, default: 0
-#         t.string :attacks, null: false
-#         t.integer :proficiency, null: false
-#         t.string :strength, null: false
-#         t.integer :armour_penetration, default: 0
-#         t.string :damage, null: false
-#         t.integer :equiped, default: 0
-#         t.integer :equip_limit, default: 1
-#         t.integer :model_id, null: false,
-#         t.integer :weapon_id
-#         t.string :wargear_types, array: true, default: []
-  
-#         t.timestamps
-#       end
-#     end
-#   end
+WARGEAR_TYPES = {
+    ADD_ANY: "ADD_ANY",
+    ALT_1: "ALT_1",
+    ALT_2: "ALT_2",
+    ALT_3: "ALT_3",
+    ALT_4: "ALT_4",
+    ALT_5: "ALT_5",
+    FOR_N_MODELS_ONE: "FOR_N_MODELS_ONE",
+    FOR_N_MODELS_TWO: "FOR_N_MODELS_TWO",
+    FIRST_SELECT_ONE: "FIRST_SELECT_ONE",
+    SECOND_SELECT_ONE: "SECOND_SELECT_ONE",
+    THIRD_SELECT_ONE: "THIRD_SELECT_ONE",
+    FOURTH_SELECT_ONE: "FOURTH_SELECT_ONE"
+}
 
 def create_weapons(ork_weapons)
     $ork_models.each do |ork_name, ork_details|
@@ -82,21 +74,6 @@ def get_ork_weapons
     end
     ork_weapons
 end
-
-WARGEAR_TYPES = {
-    ADD_ANY: "ADD_ANY",
-    ALT_1: "ALT_1",
-    ALT_2: "ALT_2",
-    ALT_3: "ALT_3",
-    ALT_4: "ALT_4",
-    ALT_5: "ALT_5",
-    FOR_N_MODELS_ONE: "FOR_N_MODELS_ONE",
-    FOR_N_MODELS_TWO: "FOR_N_MODELS_TWO",
-    FIRST_SELECT_ONE: "FIRST_SELECT_ONE",
-    SECOND_SELECT_ONE: "SECOND_SELECT_ONE",
-    THIRD_SELECT_ONE: "THIRD_SELECT_ONE",
-    FOURTH_SELECT_ONE: "FOURTH_SELECT_ONE"
-}
 
 ork_weapons = {}
 ork_weapons["Beastboss"] = [
@@ -541,6 +518,16 @@ ork_weapons["Painboss"] = [
         armour_penetration: -2,
         damage: "2",
         equipped: 1
+    }, {
+        name: "Grot Orderly",
+        meelee: false,
+        range: 0,
+        attacks: "0",
+        proficiency: 0,
+        strength: "0",
+        armour_penetration: 0,
+        damage: "0",
+        wargear_types: [WARGEAR_TYPES[:ADD_ANY]]
     }
 ]
 

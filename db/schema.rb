@@ -23,6 +23,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_29_191806) do
     t.string "ability_type", null: false
     t.integer "model_id"
     t.integer "army_id"
+    t.integer "wargear_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ability_type"], name: "index_abilities_on_ability_type"

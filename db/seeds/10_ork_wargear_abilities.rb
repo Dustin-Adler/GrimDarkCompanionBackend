@@ -1,39 +1,29 @@
-# class CreateAbilities < ActiveRecord::Migration[8.0]
-#     def change
-#       create_table :abilities do |t|
-#         t.string :name, null: false
-#         t.text :flavour_text
-#         t.text :rule, null: false
-#         t.text :example
-#         t.text :tldr
-#         t.string :ability_type, null: false
-#         t.integer :model_id
-#         t.integer :army_id
-#         t.integer :wargear_id
-  
-#         t.timestamps
-#       end
-#       add_index :abilities, :name
-#       add_index :abilities, :model_id
-#       add_index :abilities, :army_id
-#       add_index :abilities, :ability_type
-#     end
-#   end
+puts "creating Ork wargear, damage, and transport abilities..."
 
+def create_ork_model_abilities(ork_wargear_abilities)
+    ork_wargear_abilities.each do |model_name, ability_data|
+        puts "Failed to create wargear abilities for #{model_name}" unless $ork_models[model_name]
+
+        weapon_id = nil
+        model_id = nil
+        if ability_data[:ability_type] == "WARGEAR"
+            weapon_id = $orks_models_and_weapons[model_name].select { |weapon| weapon.name == ability_data[:name]}[0].id
+        else
+            model_id = $ork_models[model_name].id
+        end
+
+        Ability.create({
+            name: ability_data[:name],
+            rule: ability_data[:rule],
+            example: ability_data[:example],
+            wargear_id: weapon_id,
+            model_id: model_id,
+            ability_type: ability_data[:ability_type]
+        })
+    end
+end
 
 ork_wargear_abilities = {}
-
-ork_wargear_abilities[:example] = {
-    name: "Example Wargear Ability",
-    flavour_text: "This is an example of a wargear ability.",
-    rule: "This is the rule for the example wargear ability.",
-    example: " This is an example of how to use the wargear ability.",
-    tldr: "This is a short summary of the wargear ability.",
-    ability_type: "WARGEAR",
-    model_id: model_id || nil,
-    army_id: army_id || nil,
-    wargear_id: wargear_id || nil
-}
 
 ork_wargear_abilities["Big Mek In Mega Armour"] = {
     name: "Kustom Force Field",
@@ -73,7 +63,7 @@ ork_wargear_abilities["Painboss"] = {
     ability_type: "WARGEAR"
 }
 
-ork_wargear_abilities["Boyz"] = {
+ork_wargear_abilities["Boyz - Boy"] = {
     name: "Bodyguard",
     flavour_text: "Get anotha' boss!",
     rule: "If this unit has a Starting Strength of 20, you can attach up to two Leader units 
@@ -269,3 +259,13 @@ ork_wargear_abilities["Gargantuan Squiggoth"] = {
         GHAZGHKULL THRAKA takes up the space of 18 models. If this model is equipped with a supa-kannon, it has a transport capacity of 15 ORKS INFANTRY models.",
     ability_type: "TRANSPORT"
 }
+
+ork_wargear_abilities["Ghazghkull Thraka"] = {
+    name: "Supreme Commander",
+    rule: "If this unit is in your army, its Ghazghkull Thraka model must be your Warlord.",
+    ability_type: "COMMANDER"
+}
+
+create_ork_model_abilities(ork_wargear_abilities)
+
+puts "Successfully created Ork wargear abilities."
