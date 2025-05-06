@@ -234,11 +234,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_29_191806) do
   create_table "wargear_options", force: :cascade do |t|
     t.integer "model_id", null: false
     t.integer "default_loadout", null: false, array: true
-    t.integer "weapon_loadouts", default: [], array: true
     t.integer "add_any", default: [], array: true
-    t.integer "select_one", default: [], array: true
-    t.integer "for_n_models"
-    t.integer "for_n_models_weapon_swap", default: [], array: true
+    t.integer "alt_loadout_one", default: [], array: true
+    t.integer "alt_loadout_two", default: [], array: true
+    t.integer "alt_loadout_three", default: [], array: true
+    t.integer "alt_loadout_four", default: [], array: true
+    t.integer "alt_loadout_five", default: [], array: true
+    t.integer "first_select_one", default: [], array: true
+    t.integer "second_select_one", default: [], array: true
+    t.integer "third_select_one", default: [], array: true
+    t.integer "fourth_select_one", default: [], array: true
+    t.integer "models_per_weapon_one"
+    t.integer "for_n_models_one", default: [], array: true
+    t.integer "models_per_weapon_two"
+    t.integer "for_n_models_two", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
