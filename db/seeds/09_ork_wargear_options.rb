@@ -1,584 +1,91 @@
-# class CreateWargearOptions < ActiveRecord::Migration[8.0]
-#     def change
-#       create_table :wargear_options do |t|
-#         t.integer :model_id, null: false
-#         t.integer :weapon_loadouts, array: true, default: []
-#         t.integer :add_any, array: true, default: []
-#         t.integer :select_one, array:true, default: []
-#         t.integer :for_n_models
-#         t.integer :for_n_models_weapon_swap, array:true, default: []
-  
-#         t.timestamps
-#       end
-#     end
-#   end
+# require_relative '07_ork_weapons.rb'
 
-require_relative '../db/seeds/07_orks_weapons.rb'
+puts "creating Ork wargear options..."
 
-def create_wargear_options(wargear_options) 
+WARGEAR_TYPES = {
+    ADD_ANY: "ADD_ANY",
+    ALT_1: "ALT_1",
+    ALT_2: "ALT_2",
+    ALT_3: "ALT_3",
+    ALT_4: "ALT_4",
+    ALT_5: "ALT_5",
+    FOR_N_MODELS_ONE: "FOR_N_MODELS_ONE",
+    FOR_N_MODELS_TWO: "FOR_N_MODELS_TWO",
+    FIRST_SELECT_ONE: "FIRST_SELECT_ONE",
+    SECOND_SELECT_ONE: "SECOND_SELECT_ONE",
+    THIRD_SELECT_ONE: "THIRD_SELECT_ONE",
+    FOURTH_SELECT_ONE: "FOURTH_SELECT_ONE"
+}
+
+def create_wargear_type_for_wargear_options(wargear_options_hash, wargear_option, weapon_wargear_type, weapon_id, num_mods_per_weapon = nil)
+   # create_wargear_type_for_wargear_options takes in current wargear_options_hash, creates new obj wargear_option => [] for a specific model if it doesn't exist
+   # also creates a new object weapon_wargear_type => [] inside of the wargear_option if it doesn't exist and returns either the array that was found or the new array
+
+   wargear_options_hash[wargear_option] = [] if wargear_options_hash[wargear_option].nil?
+   if wargear_option == :add_any
+      wargear_options_hash[wargear_option] << weapon_id
+   else
+      wargear_type_index = wargear_options_hash[wargear_option].index { |loadout| loadout[weapon_wargear_type] }
+      if wargear_type_index.nil?
+         if num_mods_per_weapon.nil?
+            debugger if wargear_option == :weapon_loadouts && weapon_wargear_type == WARGEAR_TYPES[:FIRST_SELECT_ONE]
+            wargear_options_hash[wargear_option] << {weapon_wargear_type => [weapon_id]}
+         else
+            wargear_options_hash[wargear_option] << {weapon_wargear_type => [weapon_id], models_per_weapon: num_mods_per_weapon}
+         end
+      else
+         debugger if wargear_option == :weapon_loadouts && weapon_wargear_type == WARGEAR_TYPES[:FIRST_SELECT_ONE]
+         wargear_options_hash[wargear_option][wargear_type_index][weapon_wargear_type] << weapon_id
+      end
+   end
+   wargear_options_hash
+end
+
+def create_wargear_options
+   wargear_options = {}
    $orks_models_and_weapons.each do |model_name, weapons_array|
+      wargear = wargear_options[model_name] = {
+         model_id: weapons_array[0].model_id,
+         default_loadout: []}
       weapons_array.each do |weapon|
-         unless weapon.wargear_types.empty?
+         wargear[:default_loadout] << weapon.id if weapon.equipped > 0
+         if weapon.wargear_types.any?
             weapon.wargear_types.each do |wargear_type|
                case wargear_type
                   when WARGEAR_TYPES[:ADD_ANY]
-                     wargear_options[model_name][:add_any] << weapon.id
+                     create_wargear_type_for_wargear_options(wargear, :add_any, WARGEAR_TYPES[:ADD_ANY], weapon.id)
                   when WARGEAR_TYPES[:ALT_1]
-                     wargear_options[model_name][:weapon_loadouts] << weapon.id
+                     create_wargear_type_for_wargear_options(wargear, :weapon_loadouts, WARGEAR_TYPES[:ALT_1], weapon.id)
                   when WARGEAR_TYPES[:ALT_2]
-                     wargear_options[model_name][:weapon_loadouts] << weapon.id
+                     create_wargear_type_for_wargear_options(wargear, :weapon_loadouts, WARGEAR_TYPES[:ALT_2], weapon.id)
                   when WARGEAR_TYPES[:ALT_3]
-                     wargear_options[model_name][:weapon_loadouts] << weapon.id
+                     create_wargear_type_for_wargear_options(wargear, :weapon_loadouts, WARGEAR_TYPES[:ALT_3], weapon.id)
                   when WARGEAR_TYPES[:ALT_4]
-                     wargear_options[model_name][:weapon_loadouts] << weapon.id
+                     create_wargear_type_for_wargear_options(wargear, :weapon_loadouts, WARGEAR_TYPES[:ALT_4], weapon.id)
                   when WARGEAR_TYPES[:ALT_5]
-                     wargear_options[model_name][:weapon_loadouts] << weapon.id
+                     create_wargear_type_for_wargear_options(wargear, :weapon_loadouts, WARGEAR_TYPES[:ALT_5], weapon.id)
                   when WARGEAR_TYPES[:FOR_N_MODELS_ONE]
-                     wargear_options[model_name][:for_n_models_weapon_swap] << weapon.id
+                     create_wargear_type_for_wargear_options(wargear, :for_n_models_weapon_swap, WARGEAR_TYPES[:FOR_N_MODELS_ONE], weapon.id, weapon.models_per_weapon)
                   when WARGEAR_TYPES[:FOR_N_MODELS_TWO]
-                     wargear_options[model_name][:for_n_models_weapon_swap] << weapon.id
+                     create_wargear_type_for_wargear_options(wargear, :for_n_models_weapon_swap, WARGEAR_TYPES[:FOR_N_MODELS_TWO], weapon.id, weapon.models_per_weapon)
                   when WARGEAR_TYPES[:FIRST_SELECT_ONE]
-                     wargear_options[model_name][:select_one] << weapon.id
+                     create_wargear_type_for_wargear_options(wargear, :weapon_loadouts, WARGEAR_TYPES[:FIRST_SELECT_ONE], weapon.id)
                   when WARGEAR_TYPES[:SECOND_SELECT_ONE]
-                     wargear_options[model_name][:select_one] << weapon.id
+                     create_wargear_type_for_wargear_options(wargear, :weapon_loadouts, WARGEAR_TYPES[:SECOND_SELECT_ONE], weapon.id)
                   when WARGEAR_TYPES[:THIRD_SELECT_ONE]
-                     wargear_options[model_name][:select_one] << weapon.id
+                     create_wargear_type_for_wargear_options(wargear, :weapon_loadouts, WARGEAR_TYPES[:THIRD_SELECT_ONE], weapon.id)
                   when WARGEAR_TYPES[:FOURTH_SELECT_ONE]
-                     wargear_options[model_name][:select_one] << weapon.id
+                     create_wargear_type_for_wargear_options(wargear, :weapon_loadouts, WARGEAR_TYPES[:FOURTH_SELECT_ONE], weapon.id)
+               end
+            end
          end
-         
-
-         wargear_options[model_name]
-         weapon_loadouts: [],
-         add_any: [],
-         select_one: [],
-         for_n_models: 0,
-         for_n_models_weapon_swap: []
       end
+   end
+   wargear_options.each do |model_name, wargear_options|
+      WargearOption.create(wargear_options)
    end
 end
 
+create_wargear_options()
 
-wargear_options = {}
-
- wargear_options["Battlewagon"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Beast Snagga Boyz - Boy"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Beast Snagga Boyz - Nob"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Beastboss"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Beastboss On Squigosaur"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Big Mek"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Big Mek In Mega Armour"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Big Mek With Shokk Attack Gun"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Big’ed Bossbunka"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Blitza-bommer"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Boomdakka Snazzwagon"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Boss Snikrot"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Boyz - Boss Nob"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Boyz - Boy"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Breaka Boyz - Boss Nob"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Breaka Boyz - Boy"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Burna Boyz - Boy"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Burna Boyz - Spanner"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Burna-bommer"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Dakkajet"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Deff Dread"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Deffkilla Wartrike"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Deffkoptas"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Flash Gitz"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Gargantuan Squiggoth"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Ghazghkull Thraka"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Gorkanaut"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Gretchin - Grot"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Gretchin - Runtherd"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Hunta Rig"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Kill Rig"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Killa Kans"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Kommandos - Boss Nob"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Kommandos - Kommando"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Kustom Boosta-Blasta"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Lootas - Loota"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Lootas - Spanner"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Makari"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Meganobz"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Megatrakk Scrapjet"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Mek"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Mek Gunz"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Morkanaut"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Mozrog Skragbad"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Nobz"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Painboss"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Painboy"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Rukkatrukk Squigbuggy"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Shokkjump Dragsta"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Squighog Boyz - Nob on Smasha Squig"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Squighog Boyz - Squighog Boy"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Stompa"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Stormboy - Boss Nob"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Stormboy - Stormboy"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Tankbustas - Boss Nob"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Tankbustas - Tankbusta"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Trukk"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Warbikers - Boss Nob on Warbike"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Warbikers - Warbiker"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Warboss"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Warboss In Mega Armour"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Wazbom Blastajet"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Weirdboy"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Wurrboy"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- wargear_options["Zodgrod Wortsnagga"] = {
-    weapon_loadouts: [],
-    add_any: [],
-    select_one: [],
-    for_n_models: 0,
-    for_n_models_weapon_swap: []
- }
-
- create_wargear_options(wargear_options)
+puts "Successfully created Ork Wargear Options"

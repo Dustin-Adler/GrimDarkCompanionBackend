@@ -38,9 +38,10 @@ def create_weapons(ork_weapons)
                 strength: weapon[:strength],
                 armour_penetration: weapon[:armour_penetration] || 0,
                 damage: weapon[:damage],
-                equipped: weapon[:equipped],
+                equipped: weapon[:equipped] || 0,
                 equip_limit: weapon[:equip_limit] || 1,
                 wargear_types: weapon[:wargear_types] || [],
+                models_per_weapon: weapon[:models_per_weapon],
                 model_id: ork_details.id
             })
 
@@ -69,7 +70,7 @@ def create_weapons(ork_weapons)
 end
 
 # Method used to create a hash of all ork weapons
-def get_ork_weapons()
+def get_ork_weapons
     ork_ids = {}
     $ork_models.each do |model_name, model_details|
         ork_ids[model_details.id] = model_name
@@ -773,7 +774,8 @@ ork_weapons["Beast Snagga Boyz - Boy"] = [
         strength: "6",
         armour_penetration: 0,
         damage: "2",
-        wargear_types: [WARGEAR_TYPES[:FOR_N_MODELS]]
+        models_per_weapon: 10,
+        wargear_types: [WARGEAR_TYPES[:FOR_N_MODELS_ONE]]
     }, {
         name: "Choppa",
         meelee: true,
@@ -794,7 +796,8 @@ ork_weapons["Beast Snagga Boyz - Boy"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
-        wargear_types: [WARGEAR_TYPES[:FOR_N_MODELS]]
+        models_per_weapon: 10,
+        wargear_types: [WARGEAR_TYPES[:FOR_N_MODELS_ONE]]
     }
 ]
 
@@ -885,6 +888,7 @@ ork_weapons["Boyz - Boy"] = [
         strength: "5",
         armour_penetration: 0,
         damage: "1",
+        models_per_weapon: 10,
         wargear_types: [WARGEAR_TYPES[:FOR_N_MODELS_ONE]]
     }, {
         name: "Rokkit Launcha",
@@ -895,6 +899,7 @@ ork_weapons["Boyz - Boy"] = [
         strength: "9",
         armour_penetration: -2,
         damage: "3",
+        models_per_weapon: 10,
         wargear_types: [WARGEAR_TYPES[:FOR_N_MODELS_TWO]]
     }, {
         name: "Close Combat Weapon",
@@ -906,6 +911,7 @@ ork_weapons["Boyz - Boy"] = [
         armour_penetration: 0,
         damage: "1",
         equip_limit: 10,
+        models_per_weapon: 10,
         wargear_types: [WARGEAR_TYPES[:ALT_1], WARGEAR_TYPES[:FOR_N_MODELS_ONE], WARGEAR_TYPES[:FOR_N_MODELS_TWO]]
     }, {
         name: "Choppa",
@@ -1432,6 +1438,7 @@ ork_weapons["Deffkoptas"] = [
         armour_penetration: -2,
         damage: "d6",
         equip_limit: 2,
+        models_per_weapon: 3,
         wargear_types: [WARGEAR_TYPES[:FOR_N_MODELS_ONE]]
     }, {
         name: "Slugga",
@@ -1489,6 +1496,7 @@ ork_weapons["Flash Gitz"] = [
         proficiency: 0,
         strength: "0",
         damage: "0",
+        models_per_weapon: 1,
         wargear_types: [WARGEAR_TYPES[:FOR_N_MODELS_ONE]]
     }
 ]
@@ -2372,6 +2380,7 @@ ork_weapons["Nobz"] = [
         strength: "0",
         armour_penetration: 0,
         damage: "0",
+        models_per_weapon: 5,
         wargear_types: [WARGEAR_TYPES[:FOR_N_MODELS_ONE]]
     }
 ]
@@ -2532,6 +2541,7 @@ ork_weapons["Squighog Boyz - Squighog Boy"] = [
         strength: "0",
         armour_penetration: 0,
         damage: "0",
+        models_per_weapon: 3,
         wargear_types: [WARGEAR_TYPES[:FOR_N_MODELS_ONE]]
     }
 ]

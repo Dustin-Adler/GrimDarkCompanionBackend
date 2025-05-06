@@ -13,6 +13,7 @@ class CreateWeapons < ActiveRecord::Migration[8.0]
       t.integer :equip_limit, default: 1
       t.integer :model_id, null: false
       t.integer :weapon_id
+      t.integer :models_per_weapon
       t.string :wargear_types, array: true, default: []
 
       t.timestamps

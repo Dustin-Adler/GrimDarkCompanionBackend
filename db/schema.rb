@@ -264,6 +264,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_29_191806) do
     t.integer "equip_limit", default: 1
     t.integer "model_id", null: false
     t.integer "weapon_id"
+    t.integer "models_per_weapon"
     t.string "wargear_types", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
