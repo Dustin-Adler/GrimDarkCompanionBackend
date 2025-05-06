@@ -9,6 +9,7 @@ class CreateAbilities < ActiveRecord::Migration[8.0]
       t.string :ability_type, null: false
       t.integer :model_id
       t.integer :army_id
+      t.integer :wargear_id
 
       t.timestamps
     end
