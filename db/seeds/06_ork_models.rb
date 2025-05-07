@@ -5,8 +5,7 @@ ork_army_id = $grim_dark_armies["Orks"].id
 def create_ork_models(ork_model_seeds)
     affiliate_model_obj = {}
     ork_model_seeds.each do |model|
-        model.affiliate_model_id = affiliate_model_obj[model.name] if affiliate_model_obj[model.name]
-        Model.create(
+        new_model = Model.create(
             name: model[:name],
             description: model[:description],
             movement: model[:movement],
@@ -20,18 +19,13 @@ def create_ork_models(ork_model_seeds)
             invuln_save: model[:invuln_save],
             wounds: model[:wounds],
             leadership: model[:leadership],
-            obj_control: model[:obj_control],
-            affiliate_model_id: model[:affiliate_model_id].is_a?(Integer) ? model[:affiliate_model_id] : nil
+            obj_control: model[:obj_control]
         )
-
-        if model.affiliate_model_id
-            if model.affiliate_model_id.is_a?(Integer)
-                Model.find(model.affiliate_model_id).update(affiliate_model_id: model.id)
-                affiliate_model_obj.delete(model.name)
-            else
-                affiliate_model_obj[model.affiliate_model_id] = model.id
-            end
-        end
+        affiliate_model_obj[model[:affiliate_model_id]] = new_model[:id] if model[:affiliate_model_id]
+    end
+    affiliate_model_obj.each do |model_name, model_id|
+        model = Model.find(model_id)
+        model.update(affiliate_model_id: affiliate_model_obj[model_name])
     end
 end
 
@@ -1173,6 +1167,7 @@ ork_model_seeds.push({
     obj_control: 1
 })
 
+create_ork_models(ork_model_seeds)
 # saving useful static information so all lookup times are reduced from n to 1
 $ork_models = {}
 Model.where(army_id: ork_army_id).each { |model| $ork_models[model.name] = model }

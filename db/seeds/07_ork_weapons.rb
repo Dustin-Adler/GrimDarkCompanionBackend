@@ -20,7 +20,6 @@ def create_weapons(ork_weapons)
         puts "Failed to create #{ork_name}'s weapons" unless ork_weapons[ork_name]
         multi_prof_weapons = {}
         ork_weapons[ork_name].each do |weapon|
-            weapon.weapon_id = multi_prof_weapons[weapon[:name]].id if multi_prof_weapons[weapon[:name]]
             new_weapon = Weapon.create({
                 name: weapon[:name],
                 meelee: weapon[:meelee],
@@ -36,32 +35,16 @@ def create_weapons(ork_weapons)
                 models_per_weapon: weapon[:models_per_weapon],
                 model_id: ork_details.id
             })
-
-            if weapon[:weapon_id]
-                if weapon[:weapon_id].is_a?(Integer)
-                    new_weapon.update(weapon_id: weapon.weapon_id) 
-                elsif weapon[:weapon_id].is_a?(String)
-                    multi_prof_weapons[weapon[:weapon_id]] = weapon[:id]
-                end
-            end
-
-            # if the new_weapon has a weapon_id, then it has found a matching weapon profile in multi_prof_weapons.
-            # We need to update the weapon_id of the matched weapon from multi_prof_weapons. It was created first, and so
-            # there was no weapon id to save into the weapon_id row at the time of creation.
-            if new_weapon.weapon_id
-                linked_weapon_profile = Weapon.find(multi_prof_weapons[new_weapon.name])
-                linked_weapon_profile.update(weapon_id: new_weapon.id)
-                multi_prof_weapons.delete(new_weapon.name)
-            end
-
-            # if the weapon has a value for weapon_id, but can't find a matching profile in multi_prof_weapons, then it's a multi_prof weapon 
-            # but it's match or matches haven't been created yet. We save the profile in multi_prof_weapons using the value that was found in weapon_id.
-            # weapon_id should be the name of the matching weapon profile, so we use that as the key.
+            multi_prof_weapons[weapon[:weapon_id]] = new_weapon[:id] if weapon[:weapon_id]
+        end
+        multi_prof_weapons.each do |name, weapon_id|
+            weapon = Weapon.find(weapon_id)
+            weapon.update(weapon_id: multi_prof_weapons[weapon[:name]])
         end
     end
 end
 
-# Method used to create a hash of all ork weapons
+# Method used to create a hash of all ork weapons listed by model name
 def get_ork_weapons
     ork_ids = {}
     $ork_models.each do |model_name, model_details|
@@ -2148,6 +2131,7 @@ ork_weapons["Megatrakk Scrapjet"] = [
     }
 ]
 
+# mek gunz tripple weapon profile isn't working correctly in the current build
 ork_weapons["Mek Gunz"] = [
     {
         name: "Bubblechukka - Big Bubble",
@@ -2159,7 +2143,7 @@ ork_weapons["Mek Gunz"] = [
         armour_penetration: -1,
         damage: "1",
         equip_limit: 3,
-        weapon_id: "Bubblechukka - Wobbly Bubble",
+        weapon_id: "Bubblechukka - Dense Bubble",
         wargear_types: [WARGEAR_TYPES[:FIRST_SELECT_ONE]]
     }, {
         name: "Bubblechukka - Wobbly Bubble",
@@ -2171,7 +2155,7 @@ ork_weapons["Mek Gunz"] = [
         armour_penetration: -2,
         damage: "3",
         equip_limit: 3,
-        weapon_id: "Bubblechukka - Dense Bubble",
+        weapon_id: "Bubblechukka - Big Bubble",
         wargear_types: [WARGEAR_TYPES[:FIRST_SELECT_ONE]]
     }, {
         name: "Bubblechukka - Dense Bubble",
@@ -2183,7 +2167,7 @@ ork_weapons["Mek Gunz"] = [
         armour_penetration: -3,
         damage: "d6+3",
         equip_limit: 3,
-        weapon_id: "Bubblechukka - Big Bubble",
+        weapon_id: "Bubblechukka - Wobbly Bubble",
         wargear_types: [WARGEAR_TYPES[:FIRST_SELECT_ONE]]
     }, {
         name: "Kustom Mega-Kannon",
