@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :squad_leaders
   resources :wargear_options
   resources :users
   resources :games_secondary_objectives
