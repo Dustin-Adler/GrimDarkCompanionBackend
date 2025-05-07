@@ -17,6 +17,7 @@ class CreateModels < ActiveRecord::Migration[8.0]
       t.integer :obj_control, null: false
       t.integer :affiliate_model_id, default: nil
       t.integer :big_squad_points_adjustment, default: 0
+      t.integer :leader_or_squad_ids, array: true, default: []
 
       t.timestamps
     end
