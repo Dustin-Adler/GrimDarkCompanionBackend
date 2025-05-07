@@ -6,6 +6,6 @@ class CreateAvailableStrategems < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-    add_index :available_strategems, [:keyword_id, :strategem_id], unique: true
+    add_index :available_strategems, [ :keyword_id, :strategem_id ], unique: true
   end
 end

@@ -58,8 +58,8 @@ ork_model_abilities["Big Mek"] = {
 
 ork_model_abilities["Big Mek In Mega Armour"] = {
     name: "Shokk-Boosta",
-    rule: "You can re-roll Advance rolls made for this model’s unit. In addition, each time this model’s unit makes a Normal, 
-        Advance or Fall Back move, until that move is finished, models in that unit can move horizontally through models and terrain features 
+    rule: "You can re-roll Advance rolls made for this model’s unit. In addition, each time this model’s unit makes a Normal,
+        Advance or Fall Back move, until that move is finished, models in that unit can move horizontally through models and terrain features
         (but cannot finish a move on top of another model or its base)."
 }
 
@@ -75,7 +75,7 @@ ork_model_abilities["Big Mek With Shokk Attack Gun"] = {
 
 ork_model_abilities["Big’ed Bossbunka"] = {
     name: "Ramshackle Cover",
-    rule: "Each time a ranged attack is allocated to a model, if that model is not fully visible to every model in the attacking 
+    rule: "Each time a ranged attack is allocated to a model, if that model is not fully visible to every model in the attacking
         unit because of this FORTIFICATION, that model has the Benefit of Cover against that attack."
 }
 
@@ -109,19 +109,19 @@ ork_model_abilities["Boss Snikrot"] = {
 
 ork_model_abilities["Boss Snikrot"] = {
     name: "Kunnin’ Infiltrator",
-    rule: "Once per battle, in your Movement phase, instead of making a Normal move with this model’s unit, you can remove it from the battlefield and set it up again anywhere 
+    rule: "Once per battle, in your Movement phase, instead of making a Normal move with this model’s unit, you can remove it from the battlefield and set it up again anywhere
         on the battlefield that is more than 9\" horizontally away from all enemy models."
 }
 
 ork_model_abilities["Boyz - Boss Nob"] = {
     name: "Get Da Good Bitz",
-    rule: "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have 
+    rule: "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have
         no models within range of it, until your opponent controls it at the start or end of any turn."
 }
 
 ork_model_abilities["Boyz - Boy"] = {
     name: "Get Da Good Bitz",
-    rule: "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have 
+    rule: "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have
         no models within range of it, until your opponent controls it at the start or end of any turn."
 }
 
@@ -149,19 +149,19 @@ ork_model_abilities["Breaka Boyz - Boy"] = {
 
 ork_model_abilities["Burna Boyz - Boy"] = {
     name: "Pyromaniaks",
-    rule: "Each time a model in this unit makes a ranged attack with a burna that targets an enemy unit within 6\", re-roll a Wound roll of 1. 
+    rule: "Each time a model in this unit makes a ranged attack with a burna that targets an enemy unit within 6\", re-roll a Wound roll of 1.
         If the target of that attack is also within range of an objective marker, you can re-roll the Wound roll instead."
 }
 
 ork_model_abilities["Burna Boyz - Spanner"] = {
     name: "Pyromaniaks",
-    rule: "Each time a model in this unit makes a ranged attack with a burna that targets an enemy unit within 6\", re-roll a Wound roll of 1. 
+    rule: "Each time a model in this unit makes a ranged attack with a burna that targets an enemy unit within 6\", re-roll a Wound roll of 1.
         If the target of that attack is also within range of an objective marker, you can re-roll the Wound roll instead."
 }
 
 ork_model_abilities["Burna-bommer"] = {
     name: "Burna Bomb",
-    rule: "Each time this model ends a Normal move, you can select one enemy unit it moved over during that move. 
+    rule: "Each time this model ends a Normal move, you can select one enemy unit it moved over during that move.
         Until the end of the turn, models in that unit cannot have the Benefit of Cover. In addition, roll one D6 for each model in that unit: for each 6, that unit suffers 1 mortal wound."
 }
 
@@ -187,7 +187,7 @@ ork_model_abilities["Deffkilla Wartrike"] = {
 
 ork_model_abilities["Deffkoptas"] = {
     name: "Deff from Above",
-    rule: "Each time this unit ends a Normal move, you can select one enemy unit it moved over during that move and roll one D6 for each model in this unit: 
+    rule: "Each time this unit ends a Normal move, you can select one enemy unit it moved over during that move and roll one D6 for each model in this unit:
         for each 4+, that enemy unit suffers 1 mortal wound."
 }
 
@@ -198,7 +198,7 @@ ork_model_abilities["Flash Gitz"] = {
 
 ork_model_abilities["Gargantuan Squiggoth"] = {
     name: "Gargantuan",
-    rule: "Each time this model makes a Normal, Advance or Fall Back move, it can move over models (excluding TITANIC models) and terrain features that are 4\" 
+    rule: "Each time this model makes a Normal, Advance or Fall Back move, it can move over models (excluding TITANIC models) and terrain features that are 4\"
         or less in height as if they were not there."
 }
 
@@ -209,13 +209,13 @@ ork_model_abilities["Gargantuan Squiggoth"] = {
 
 ork_model_abilities["Ghazghkull Thraka"] = {
     name: "Prophet of Da Great Waaagh!",
-    rule: "While this unit is leading a unit, each time a model in that unit makes a melee attack, add 1 to the Hit roll and add 1 to the Wound roll and if the Waaagh! 
+    rule: "While this unit is leading a unit, each time a model in that unit makes a melee attack, add 1 to the Hit roll and add 1 to the Wound roll and if the Waaagh!
         is active for your army, a Critical Hit is scored on a successful unmodified Hit roll of 5+."
 }
 
 ork_model_abilities["Gorkanaut"] = {
     name: "Clankin’ Forward",
-    rule: "Each time this model makes a Normal, Advance or Fall Back move, it can move over enemy models (excluding MONSTER and VEHICLE models) and terrain features 
+    rule: "Each time this model makes a Normal, Advance or Fall Back move, it can move over enemy models (excluding MONSTER and VEHICLE models) and terrain features
         that are 4\" or less in height as if they were not there."
 }
 
@@ -226,7 +226,7 @@ ork_model_abilities["Gorkanaut"] = {
 
 ork_model_abilities["Gretchin - Grot"] = {
     name: "Thievin’ Scavengers",
-    rule: "At the start of your Movement phase, roll one D6 for each objective marker you control that has one or more 
+    rule: "At the start of your Movement phase, roll one D6 for each objective marker you control that has one or more
         units from your army with this ability within range of it (excluding Battle-shocked units). If one or more of those rolls is a 4+, you gain 1CP."
 }
 
@@ -237,14 +237,14 @@ ork_model_abilities["Gretchin - Runtherd"] = {
 
 ork_model_abilities["Hunta Rig"] = {
     name: "On Da Hunt",
-    rule: "For each model embarked within this TRANSPORT, add 1 to the Attacks characteristic of this model’s butcha boyz weapon (to a maximum of +6). 
+    rule: "For each model embarked within this TRANSPORT, add 1 to the Attacks characteristic of this model’s butcha boyz weapon (to a maximum of +6).
         The Attacks characteristic of that weapon can be modified even though it is an Extra Attacks weapon."
 }
 
 ork_model_abilities["Kill Rig"] = {
     name: "Spirit of Gork (Psychic)",
-    rule: "At the start of the Fight phase, you can select one friendly Orks unit within 12\" of this model and roll one D6: on a 1, 
-        this model suffers D3 mortal wounds; on a 2-5, until the end of the phase, add 1 to the Strength characteristic of melee weapons equipped by models in that unit; 
+    rule: "At the start of the Fight phase, you can select one friendly Orks unit within 12\" of this model and roll one D6: on a 1,
+        this model suffers D3 mortal wounds; on a 2-5, until the end of the phase, add 1 to the Strength characteristic of melee weapons equipped by models in that unit;
         on a 6, until the end of the phase, add 1 to the Strength characteristic of melee weapons equipped by models in that unit and those weapons have the [LETHAL HITS] ability."
 }
 
@@ -268,13 +268,13 @@ ork_model_abilities["Kommandos - Kommando"] = {
 
 ork_model_abilities["Lootas - Loota"] = {
     name: "Dat’s Our Loot!",
-    rule: "Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If that attack targets a unit that is within range of an objective marker, 
+    rule: "Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If that attack targets a unit that is within range of an objective marker,
         you can re-roll the Hit roll instead."
 }
 
 ork_model_abilities["Lootas - Spanner"] = {
     name: "Dat’s Our Loot!",
-    rule: "Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If that attack targets a unit that is within range of an objective marker, 
+    rule: "Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If that attack targets a unit that is within range of an objective marker,
         you can re-roll the Hit roll instead."
 }
 
@@ -291,7 +291,7 @@ ork_model_abilities["Meganobz"] = {
 
 ork_model_abilities["Megatrakk Scrapjet"] = {
     name: "Drill Through",
-    rule: "Each time this model ends a Charge move, select one enemy unit within Engagement Range of it and roll one D6: on a 2-5, that enemy unit suffers D3 mortal wounds; 
+    rule: "Each time this model ends a Charge move, select one enemy unit within Engagement Range of it and roll one D6: on a 2-5, that enemy unit suffers D3 mortal wounds;
         on a 6, that enemy unit suffers 3 mortal wounds."
 }
 
@@ -302,7 +302,7 @@ ork_model_abilities["Mek"] = {
 
 ork_model_abilities["Mek"] = {
     name: "Mekaniak",
-    rule: "At the end of your Movement phase, you can select one friendly ORKS VEHICLE model within 3\" of this model. That VEHICLE model regains up to D3 lost wounds, 
+    rule: "At the end of your Movement phase, you can select one friendly ORKS VEHICLE model within 3\" of this model. That VEHICLE model regains up to D3 lost wounds,
         and, until the start of your next Movement phase, each time that VEHICLE model makes an attack, add 1 to the Hit roll. Each model can only be selected for this ability once per turn."
 }
 
@@ -313,7 +313,7 @@ ork_model_abilities["Mek Gunz"] = {
 
 ork_model_abilities["Morkanaut"] = {
     name: "Clankin’ Forward",
-    rule: "Each time this model makes a Normal, Advance or Fall Back move, it can move over enemy models (excluding MONSTER and VEHICLE models) and terrain features that are 4\" 
+    rule: "Each time this model makes a Normal, Advance or Fall Back move, it can move over enemy models (excluding MONSTER and VEHICLE models) and terrain features that are 4\"
         or less in height as if they were not there."
 }
 
@@ -324,19 +324,19 @@ ork_model_abilities["Morkanaut"] = {
 
 ork_model_abilities["Mozrog Skragbad"] = {
     name: "One Last Kill",
-    rule: "While this model is leading a unit, each time a model in that unit is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 4+, do not remove it from play. 
+    rule: "While this model is leading a unit, each time a model in that unit is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 4+, do not remove it from play.
         The destroyed model can fight after the attacking unit has finished making its attacks, and is then removed from play."
 }
 
 ork_model_abilities["Mozrog Skragbad"] = {
     name: "Da Bigger Dey iz...",
-    rule: "Each time this model makes a melee attack that targets a MONSTER or VEHICLE unit, add 1 to the Damage characteristic of that attack. Each time this model makes a melee attack that 
+    rule: "Each time this model makes a melee attack that targets a MONSTER or VEHICLE unit, add 1 to the Damage characteristic of that attack. Each time this model makes a melee attack that
         targets a TITANIC unit, add 2 to the Damage characteristic of that attack instead."
 }
 
 ork_model_abilities["Nobz"] = {
     name: "Da Boss’ Ladz",
-    rule: "While a WARBOSS model is leading this unit, each time an attack targets this unit, if the Strength characteristic of that attack is greater than the 
+    rule: "While a WARBOSS model is leading this unit, each time an attack targets this unit, if the Strength characteristic of that attack is greater than the
         Toughness characteristic of this unit, subtract 1 from the Wound roll."
 }
 
@@ -362,8 +362,8 @@ ork_model_abilities["Painboy"] = {
 
 ork_model_abilities["Rukkatrukk Squigbuggy"] = {
     name: "Buzzer Squigs",
-    rule: "In your Shooting phase, after this model has shot, select one enemy unit (excluding MONSTERS and VEHICLES) hit by one or more of those attacks 
-        made with squig-launchas and roll one D6: on a 4+, until the end of your opponent’s next turn, that enemy unit is hindered. While a unit is hindered, 
+    rule: "In your Shooting phase, after this model has shot, select one enemy unit (excluding MONSTERS and VEHICLES) hit by one or more of those attacks
+        made with squig-launchas and roll one D6: on a 4+, until the end of your opponent’s next turn, that enemy unit is hindered. While a unit is hindered,
         subtract 2\" from its Move characteristic and subtract 2 from Advance and Charge rolls made for it."
 }
 
@@ -374,7 +374,7 @@ ork_model_abilities["Rukkatrukk Squigbuggy"] = {
 
 ork_model_abilities["Shokkjump Dragsta"] = {
     name: "Shokk Tunnel",
-    rule: "Each time this model is selected to Advance, you can remove it from the battlefield and set it up again anywhere on the battlefield that is more than 9\" horizontally 
+    rule: "Each time this model is selected to Advance, you can remove it from the battlefield and set it up again anywhere on the battlefield that is more than 9\" horizontally
         away from all enemy models instead of making an Advance move (this model is still considered to have Advanced this turn)."
 }
 
@@ -395,7 +395,7 @@ ork_model_abilities["Stompa"] = {
 
 ork_model_abilities["Stompa"] = {
     name: "Stompin’ Forward",
-    rule: "Each time this model makes a Normal, Advance or Fall Back move, it can move over models (excluding TITANIC models) and terrain 
+    rule: "Each time this model makes a Normal, Advance or Fall Back move, it can move over models (excluding TITANIC models) and terrain
         features that are 4\" or less in height as if they were not there."
 }
 
@@ -416,7 +416,7 @@ ork_model_abilities["Tankbustas - Boss Nob"] = {
 
 ork_model_abilities["Tankbustas - Boss Nob"] = {
     name: "Bomb Squigs",
-    rule: "Twice per battle, after this unit ends a Normal move, you can use one Bomb Squig. If you do, select one enemy unit within 12\" and visible to 
+    rule: "Twice per battle, after this unit ends a Normal move, you can use one Bomb Squig. If you do, select one enemy unit within 12\" and visible to
         this unit and roll one D6: on a 3+, that enemy unit suffers D3 mortal wounds."
 }
 
@@ -427,7 +427,7 @@ ork_model_abilities["Tankbustas - Tankbusta"] = {
 
 ork_model_abilities["Tankbustas - Tankbusta"] = {
     name: "Bomb Squigs",
-    rule: "Twice per battle, after this unit ends a Normal move, you can use one Bomb Squig. If you do, select one enemy unit within 12\" and visible to 
+    rule: "Twice per battle, after this unit ends a Normal move, you can use one Bomb Squig. If you do, select one enemy unit within 12\" and visible to
         this unit and roll one D6: on a 3+, that enemy unit suffers D3 mortal wounds."
 }
 
@@ -473,27 +473,27 @@ ork_model_abilities["Wazbom Blastajet"] = {
 
 ork_model_abilities["Weirdboy"] = {
     name: "Waaagh! Energy",
-    rule: "While this model is leading a unit, add 1 to the Strength and Damage characteristics of this model’s ’Eadbanger 
+    rule: "While this model is leading a unit, add 1 to the Strength and Damage characteristics of this model’s ’Eadbanger
         weapon for every 5 models in that unit (rounding down), but while that unit contains 10 or more models, that weapon has the [HAZARDOUS] ability."
 }
 
 ork_model_abilities["Weirdboy"] = {
     name: "Da Jump (Psychic)",
-    rule: "Once per turn, at the end of your Movement phase, one WEIRDBOY from your army can use this ability. If it does, roll one D6: on a 1, that WEIRDBOY’s 
-        unit suffers D6 mortal wounds; on a 2+, remove this WEIRDBOY’s unit from the battlefield and set it up again anywhere on the battlefield that is more than 9\" 
+    rule: "Once per turn, at the end of your Movement phase, one WEIRDBOY from your army can use this ability. If it does, roll one D6: on a 1, that WEIRDBOY’s
+        unit suffers D6 mortal wounds; on a 2+, remove this WEIRDBOY’s unit from the battlefield and set it up again anywhere on the battlefield that is more than 9\"
         horizontally away from all enemy models."
 }
 
 ork_model_abilities["Wurrboy"] = {
     name: "Unstable Oracle",
-    rule: "While this model is leading a unit, add 2 to the Attacks characteristic of this model’s Eyez of Mork weapon for every 5 models in that unit (rounding down), 
+    rule: "While this model is leading a unit, add 2 to the Attacks characteristic of this model’s Eyez of Mork weapon for every 5 models in that unit (rounding down),
         but while that unit contains 10 or more models, that weapon has the [HAZARDOUS] ability."
 }
 
 ork_model_abilities["Wurrboy"] = {
     name: "Roar of Mork (Psychic)",
-    rule: "In your opponent’s Command phase, you can select one enemy unit within 18\" ofand visible to this PSYKER and roll one D6: on a 1, this PSYKER’s unit suffers 
-        D3 mortal wounds; on a 2+, until the start of your opponent’s next Command phase, that enemy unit is confrazzled. While a unit is confrazzled, each time a 
+    rule: "In your opponent’s Command phase, you can select one enemy unit within 18\" ofand visible to this PSYKER and roll one D6: on a 1, this PSYKER’s unit suffers
+        D3 mortal wounds; on a 2+, until the start of your opponent’s next Command phase, that enemy unit is confrazzled. While a unit is confrazzled, each time a
         Battle-shock or Leadership test is taken for it, subtract 2 from that test."
 }
 

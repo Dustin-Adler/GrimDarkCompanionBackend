@@ -9,14 +9,14 @@ class CreateWargearOptions < ActiveRecord::Migration[8.0]
       t.integer :alt_loadout_three, array: true, default: []
       t.integer :alt_loadout_four, array: true, default: []
       t.integer :alt_loadout_five, array: true, default: []
-      t.integer :first_select_one, array:true, default: []
-      t.integer :second_select_one, array:true, default: []
-      t.integer :third_select_one, array:true, default: []
-      t.integer :fourth_select_one, array:true, default: []
+      t.integer :first_select_one, array: true, default: []
+      t.integer :second_select_one, array: true, default: []
+      t.integer :third_select_one, array: true, default: []
+      t.integer :fourth_select_one, array: true, default: []
       t.integer :models_per_weapon_one
-      t.integer :for_n_models_one, array:true, default: []
+      t.integer :for_n_models_one, array: true, default: []
       t.integer :models_per_weapon_two
-      t.integer :for_n_models_two, array:true, default: []
+      t.integer :for_n_models_two, array: true, default: []
 
       t.timestamps
     end

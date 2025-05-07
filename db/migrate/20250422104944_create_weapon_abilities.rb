@@ -6,6 +6,6 @@ class CreateWeaponAbilities < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-    add_index :weapon_abilities, [:weapon_id, :ability_id], unique: true
+    add_index :weapon_abilities, [ :weapon_id, :ability_id ], unique: true
   end
 end

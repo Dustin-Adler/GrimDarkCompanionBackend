@@ -6,6 +6,6 @@ class CreateEnhancementKeywords < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-    add_index :enhancement_keywords, [:enhancement_id, :keyword_id], unique: true
+    add_index :enhancement_keywords, [ :enhancement_id, :keyword_id ], unique: true
   end
 end

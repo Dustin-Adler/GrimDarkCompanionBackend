@@ -7,6 +7,6 @@ class CreateGamesSecondaryObjectives < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-    add_index :games_secondary_objectives, [:game_id, :player_id, :secondary_objective_id], unique: true
+    add_index :games_secondary_objectives, [ :game_id, :player_id, :secondary_objective_id ], unique: true
   end
 end

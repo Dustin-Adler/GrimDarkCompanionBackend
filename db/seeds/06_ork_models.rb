@@ -33,7 +33,7 @@ ork_model_seeds = []
 
 ork_model_seeds.push({
     name: "Beastboss",
-    description: "It takes a ferocious and foul-tempered Ork to lead a stampede of Beast Snaggas. Beastbosses possess these qualities in abundance. 
+    description: "It takes a ferocious and foul-tempered Ork to lead a stampede of Beast Snaggas. Beastbosses possess these qualities in abundance.
         Boasting cybork enhancements, wired-in targetin’ squigs and an array of brutal combat weaponry, these roaring monsters can bring down even the largest prey one-on-one.",
     movement: 6,
     army_id: ork_army_id,
@@ -89,8 +89,8 @@ ork_model_seeds.push({
 
 ork_model_seeds.push({
     name: "Big Mek In Mega Armour",
-    description: "For all that its weight is akin to wearing half a tank, mega armour is incredibly resilient. 
-        Big Meks often build and wear it, adding unstable kustom weaponry, force field projectors, 
+    description: "For all that its weight is akin to wearing half a tank, mega armour is incredibly resilient.
+        Big Meks often build and wear it, adding unstable kustom weaponry, force field projectors,
         crushing klaws or even tellyport blastas that kill victims by beaming their component parts across a wide area, much to the Orks’ amusement.",
     movement: 5,
     army_id: ork_army_id,
@@ -157,7 +157,7 @@ ork_model_seeds.push({
     obj_control: 3
 })
 
-ghazghkull_thraka = ork_model_seeds.push({
+ork_model_seeds.push({
     name: "Ghazghkull Thraka",
     description: "To face Ghazghkull Thraka in battle is to die. Messily. He is a totemic war leader of great kunnin’ and terrifying presence who enjoys the personal protection of the Ork gods, not that he seems to need it!",
     movement: 5,
@@ -175,7 +175,7 @@ ghazghkull_thraka = ork_model_seeds.push({
     affiliate_model_id: "Makari"
 })
 
-makari = ork_model_seeds.push({
+ork_model_seeds.push({
     name: "Makari",
     description: "Makari bears aloft the personal Waaagh! banner of Ghazghkull. There isn’t a greenskin living who doesn’t fight harder in sight of that flag.",
     movement: 5,
@@ -346,7 +346,7 @@ ork_model_seeds.push({
     obj_control: 1
 })
 
-beast_snagga_boyz_boy = ork_model_seeds.push({
+ork_model_seeds.push({
     name: "Beast Snagga Boyz - Boy",
     description: "Big, brutal, and belligerent, Beast Snagga Boyz are a force to be reckoned with. From the cannonball-like fist-shells of their thump guns, to the inescapable hooks of their choppas, Beast Snaggas excel in softening up their prey, dragging them down, then ripping them bodily to bits.",
     movement: 6,
@@ -364,7 +364,7 @@ beast_snagga_boyz_boy = ork_model_seeds.push({
     affiliate_model_id: "Beast Snagga Boyz - Nob"
 })
 
-beast_snagga_boyz_nob = ork_model_seeds.push({
+ork_model_seeds.push({
     name: "Beast Snagga Boyz - Nob",
     description: "Big, brutal, and belligerent, Beast Snagga Boyz are a force to be reckoned with. From the cannonball-like fist-shells of their thump guns, to the inescapable hooks of their choppas, Beast Snaggas excel in softening up their prey, dragging them down, then ripping them bodily to bits.",
     movement: 6,
@@ -382,7 +382,7 @@ beast_snagga_boyz_nob = ork_model_seeds.push({
     affiliate_model_id: "Beast Snagga Boyz - Boy"
 })
 
-boyz_boy = ork_model_seeds.push({
+ork_model_seeds.push({
     name: "Boyz - Boy",
     description: "Ork Boyz surge into battle in huge, unruly mobs dotted with crude special weapons and led by foul-tempered Boss Nobz. Most simply stampede towards the enemy lines, relying on their numbers and natural hardiness to carry the charge home, while others hitch a ride on Trukks and Battlewagons so as to get stuck in all the faster.",
     movement: 6,
@@ -400,7 +400,7 @@ boyz_boy = ork_model_seeds.push({
     affiliate_model_id: "Boyz - Boss Nob"
 })
 
-boyz_boss_nob = ork_model_seeds.push({
+ork_model_seeds.push({
     name: "Boyz - Boss Nob",
     description: "Ork Boyz surge into battle in huge, unruly mobs dotted with crude special weapons and led by foul-tempered Boss Nobz. Most simply stampede towards the enemy lines, relying on their numbers and natural hardiness to carry the charge home, while others hitch a ride on Trukks and Battlewagons so as to get stuck in all the faster.",
     movement: 6,
@@ -659,7 +659,7 @@ ork_model_seeds.push({
     affiliate_model_id: "Gretchin - Runtherd"
 })
 
-gretchin_runtherd = ork_model_seeds.push({
+ork_model_seeds.push({
     name: "Gretchin - Runtherd",
     description: "What Gretchin – also called grots – lack in stature, courage, resilience, discipline, motivation, loyalty, aggression and personal hygiene, they allegedly make up for in numbers. They are at least reasonable shots with their underpowered firearms, and if all else fails, the Orks find that grots make excellent bullet-stops.",
     movement: 6,
@@ -799,7 +799,7 @@ ork_model_seeds.push({
     affiliate_model_id: "Lootas - Spanner"
 })
 
-lootas_spanna = ork_model_seeds.push({
+ork_model_seeds.push({
     name: "Lootas - Spanner",
     description: "Lootas grub together every toof and fistful of scrap they can, then use the former to pay the Meks to turn the latter into very, very large guns. These they then turn on the enemy with gleeful abandon, unleashing such prodigious – if erratic – hails of fire that they can stop a battle tank in its tracks or scythe down squads of infantry.",
     movement: 6,
