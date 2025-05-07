@@ -20,12 +20,13 @@ def create_ork_models(ork_model_seeds)
             invuln_save: model[:invuln_save],
             wounds: model[:wounds],
             leadership: model[:leadership],
-            obj_control: model[:obj_control]
+            obj_control: model[:obj_control],
+            affiliate_model_id: model[:affiliate_model_id].is_a?(Integer) ? model[:affiliate_model_id] : nil
         )
 
         if model.affiliate_model_id
             if model.affiliate_model_id.is_a?(Integer)
-                Model.find(model.affiliate_model_id).update(affiliate_model_id: new_model.id)
+                Model.find(model.affiliate_model_id).update(affiliate_model_id: model.id)
                 affiliate_model_obj.delete(model.name)
             else
                 affiliate_model_obj[model.affiliate_model_id] = model.id
