@@ -4,11 +4,12 @@ class CreateStrategems < ActiveRecord::Migration[8.0]
       t.string :name, null: false
       t.text :flavour_text, null: false
       t.integer :cost, null: false
-      t.string :when, null: false
-      t.string :target, null: false
-      t.string :effect, null: false
-      t.string :restrictions, null: false
-      t.integer :detachment_id, null: false
+      t.text :when, null: false
+      t.text :target, null: false
+      t.text :effect, null: false
+      t.string :category, null: false
+      t.text :restrictions
+      t.integer :detachment_id
 
       t.timestamps
     end
