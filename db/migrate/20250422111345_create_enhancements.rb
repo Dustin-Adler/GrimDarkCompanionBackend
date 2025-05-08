@@ -4,7 +4,7 @@ class CreateEnhancements < ActiveRecord::Migration[8.0]
       t.integer :detachment_id, null: false
       t.integer :cost, null: false
       t.string :name, null: false
-      t.text :description, null: false
+      t.text :flavour_text, null: false
       t.text :rule, null: false
 
       t.timestamps

@@ -1,6 +1,6 @@
 p("Creating Squad Leaders...")
 
-def seed_ork_leader_squad_connection(ork_leaders)
+def seed_ork_squad_leader_connection(ork_leaders)
     ork_leaders.each do |leader, squads|
         squads.each do |squad|
             SquadLeader.create({
@@ -132,6 +132,6 @@ ork_leaders["Zodgrod Wortsnagga"] = [
     "Gretchin - Runtherd"
 ]
 
-seed_ork_leader_squad_connection(ork_leaders)
+seed_ork_squad_leader_connection(ork_leaders)
 
 p("Squad Leaders Created successfully.")

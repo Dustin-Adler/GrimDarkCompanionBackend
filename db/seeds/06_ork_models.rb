@@ -1168,7 +1168,6 @@ ork_model_seeds.push({
 })
 
 create_ork_models(ork_model_seeds)
-# saving useful static information so all lookup times are reduced from n to 1
 $ork_models = {}
 Model.where(army_id: ork_army_id).each { |model| $ork_models[model.name] = model }
 

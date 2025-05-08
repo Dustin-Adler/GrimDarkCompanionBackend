@@ -48,7 +48,7 @@ ork_detachments = [
         Each time a BEAST SNAGGA unit from your army declares a charge that includes your Prey as one of the targets, you can re-roll the Charge roll.
         Each time a BEAST SNAGGA model from your army makes an attack that targets your Prey, improve the Armour Penetration characteristic of that attack by 1."
   }, {
-    detachment_name: "Kult Of Speed",
+    detachment_name: "Kult of Speed",
     rule_name: "Adrenaline Junkies",
     rule_description: "If there is one thing Speed Freeks love more than racing full tilt towards the enemy, smashing into them and pulling hair pin turns to do it all again, it is loosing incredible amounts of noisy, chugging dakka as they do so.",
     rule: "Speed Freeks units from your army are eligible to shoot in a turn in which they Advanced or Fell Back."
@@ -76,7 +76,7 @@ ork_detachments = [
     rule_description: "Gathered together into an all-conquering mass of hulking brutes, the biggest Nobz and their even larger bosses are - or so they claim - more Orky than anyone else. Their bellowed war cries are louder, their self-belief, impetus and sheer presence an affront to the senses. Theirs is a violent momentum that can roll through entire enemy armies in an unrelenting wave of aggression.",
     rule: "At the start of your Command phase, in a turn in which you have not called a Waaagh!, if you have one or more WARBOSS models on the battlefield (or embarked within a TRANSPORT that is on the battlefield), you can call a Waaagh! for a second time this battle. When doing so, that second Waaagh! only counts as having been called for WARBOSS, NOBZ and MEGANOBZ units from your army."
   }, {
-    detachment_name: "More Dakka",
+    detachment_name: "More Dakka!",
     detachment_description: "Of all the Ork manias, few are as widespread as the love of heavy firepower. Temporarily united by a shared love of loud and destructive dakka, hordes of similarly obsessed Orks can produce storms of killing fire capable of felling even the most heavily armoured of enemies.",
     rule_name: "Dakka! Dakka! Dakka!",
     rule_description: "Orks have no real concept of ammunition preservation, instead tending to hold the trigger down until their ammunition runs dry or their weapon falls apart in their hands.",
@@ -86,5 +86,7 @@ ork_detachments = [
 ]
 
 create_ork_detachments(ork_detachments)
+$ork_detachments = {}
+Detachment.where(army_id: $grim_dark_armies["Orks"].id).map { |detachment| $ork_detachments[detachment.detachment_name] = detachment }
 
 puts "Ork detachments created successfully."

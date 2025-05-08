@@ -82,7 +82,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_07_200313) do
     t.integer "detachment_id", null: false
     t.integer "cost", null: false
     t.string "name", null: false
-    t.text "description", null: false
+    t.text "flavour_text", null: false
     t.text "rule", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
