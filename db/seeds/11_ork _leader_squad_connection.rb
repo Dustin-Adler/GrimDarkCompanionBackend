@@ -1,11 +1,3 @@
-# squad_leader table
-# create_table :squad_leaders do |t|
-#     t.integer :leader_id
-#     t.integer :squad_id
-
-#     t.timestamps
-#   end
-
 p("Creating Squad Leaders...")
 
 def seed_ork_leader_squad_connection(ork_leaders)

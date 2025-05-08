@@ -56,8 +56,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_07_200313) do
   end
 
   create_table "detachments", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "description", null: false
+    t.string "detachment_name", null: false
+    t.text "detachment_description"
+    t.string "rule_name", null: false
+    t.text "rule_description"
+    t.text "rule", null: false
+    t.text "keyword_info"
+    t.integer "model_id"
+    t.integer "keyword_id"
     t.integer "army_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -172,6 +178,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_07_200313) do
     t.integer "obj_control", null: false
     t.integer "affiliate_model_id"
     t.integer "big_squad_points_adjustment", default: 0
+    t.integer "leader_or_squad_ids", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["army_id"], name: "index_models_on_army_id"

@@ -1,10 +1,3 @@
-# create_table "keywords", force: :cascade do |t|
-#     t.string "name"
-#     t.datetime "created_at", null: false
-#     t.datetime "updated_at", null: false
-#     t.index ["name"], name: "index_keywords_on_name", unique: true
-#   end
-
 puts "Creating keywords..."
 
 def create_keywords(keywords)
@@ -97,5 +90,7 @@ keywords = [
 ]
 
 create_keywords(keywords)
+$keywords = {}
+Keyword.all.each { |keyword| $keywords[keyword.name] = keyword }
 
 puts "Keywords created successfully."

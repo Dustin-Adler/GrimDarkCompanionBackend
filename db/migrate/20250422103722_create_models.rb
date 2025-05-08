@@ -1,7 +1,7 @@
 class CreateModels < ActiveRecord::Migration[8.0]
   def change
     create_table :models do |t|
-      t.string :name, null: false, unique: true
+      t.string :name, null: false
       t.string :description, null: false
       t.integer :movement, null: false
       t.integer :army_id, null: false
