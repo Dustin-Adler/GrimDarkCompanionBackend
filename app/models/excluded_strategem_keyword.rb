@@ -1,0 +1,2 @@
+class ExcludedStrategemKeyword < ApplicationRecord
+end

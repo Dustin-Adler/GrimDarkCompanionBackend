@@ -1,0 +1,27 @@
+<%= form_with(model: excluded_strategem_keyword) do |form| %>
+  <% if excluded_strategem_keyword.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(excluded_strategem_keyword.errors.count, "error") %> prohibited this excluded_strategem_keyword from being saved:</h2>
+
+      <ul>
+        <% excluded_strategem_keyword.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :strategem_id, style: "display: block" %>
+    <%= form.number_field :strategem_id %>
+  </div>
+
+  <div>
+    <%= form.label :keyword_id, style: "display: block" %>
+    <%= form.number_field :keyword_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

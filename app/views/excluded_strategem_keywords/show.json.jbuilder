@@ -1,0 +1,1 @@
+json.partial! "excluded_strategem_keywords/excluded_strategem_keyword", excluded_strategem_keyword: @excluded_strategem_keyword

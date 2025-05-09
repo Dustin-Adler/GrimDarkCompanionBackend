@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Excluded strategem keywords" %>
+
+<h1>Excluded strategem keywords</h1>
+
+<div id="excluded_strategem_keywords">
+  <% @excluded_strategem_keywords.each do |excluded_strategem_keyword| %>
+    <%= render excluded_strategem_keyword %>
+    <p>
+      <%= link_to "Show this excluded strategem keyword", excluded_strategem_keyword %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New excluded strategem keyword", new_excluded_strategem_keyword_path %>

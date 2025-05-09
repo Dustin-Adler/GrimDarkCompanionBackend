@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_07_200313) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_09_173533) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -87,6 +87,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_07_200313) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["detachment_id"], name: "index_enhancements_on_detachment_id"
+  end
+
+  create_table "excluded_strategem_keywords", force: :cascade do |t|
+    t.integer "strategem_id"
+    t.integer "keyword_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friends", force: :cascade do |t|
@@ -209,6 +216,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_07_200313) do
     t.string "category", null: false
     t.text "restrictions"
     t.integer "detachment_id"
+    t.integer "player_turn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["detachment_id"], name: "index_strategems_on_detachment_id"

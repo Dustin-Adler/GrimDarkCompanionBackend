@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :excluded_strategem_keywords
   resources :squad_leaders
   resources :wargear_options
   resources :users

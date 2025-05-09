@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @excluded_strategem_keyword %>
+
+<div>
+  <%= link_to "Edit this excluded strategem keyword", edit_excluded_strategem_keyword_path(@excluded_strategem_keyword) %> |
+  <%= link_to "Back to excluded strategem keywords", excluded_strategem_keywords_path %>
+
+  <%= button_to "Destroy this excluded strategem keyword", @excluded_strategem_keyword, method: :delete %>
+</div>

@@ -10,6 +10,7 @@ class CreateStrategems < ActiveRecord::Migration[8.0]
       t.string :category, null: false
       t.text :restrictions
       t.integer :detachment_id
+      t.integer :player_turn
 
       t.timestamps
     end
