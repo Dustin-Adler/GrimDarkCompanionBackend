@@ -1,8 +1,6 @@
 class HomesController < ApplicationController
-  
-  def landing_page
+  # before_action :authenticate_user!, only: [ :home ]
+
+  def home
   end
-
-  private
-
 end

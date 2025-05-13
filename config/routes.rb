@@ -26,5 +26,5 @@ Rails.application.routes.draw do
   resources :detachments
   resources :armies
 
-  # root "homes#landing_page"
+  root "homes#home"
 end
